@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>下半年运势解读·思路复盘讲义（第四组）</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "Microsoft YaHei", "PingFang SC", serif;
+      color: #302a25;
+      background: #fbf7f1;
+    }
+    header {
+      padding: 32px clamp(18px, 4vw, 58px) 24px;
+      background: #fffdf9;
+      border-bottom: 1px solid #eadfd2;
+    }
+    main { padding: 24px clamp(18px, 4vw, 58px) 64px; display: grid; gap: 22px; }
+    h1 { margin: 10px 0 12px; font-size: clamp(30px, 4vw, 46px); letter-spacing: 0; line-height: 1.2; }
+    h2 { margin: 0; font-size: 24px; letter-spacing: 0; }
+    h3 { margin: 10px 0 0; font-size: 18px; letter-spacing: 0; }
+    p { margin: 0; color: #625a51; line-height: 1.9; }
+    a { color: #8c4d5a; font-weight: 700; }
+    ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; color: #625a51; line-height: 1.82; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      max-width: max-content;
+      white-space: nowrap;
+      line-height: 1;
+      border-radius: 999px;
+      background: #b45a68;
+      color: #fff;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .panel, details {
+      background: #fffdf9;
+      border: 1px solid #e8dccd;
+      border-radius: 8px;
+      box-shadow: 0 8px 22px rgba(61, 47, 35, 0.045);
+      overflow: clip;
+    }
+    .panel { padding: 20px; display: grid; gap: 14px; align-content: start; }
+    .case-image {
+      width: 100%;
+      max-height: 680px;
+      object-fit: cover;
+      object-position: center 45%;
+      border-radius: 8px;
+      border: 1px solid #e8dccd;
+      background: #fff;
+    }
+    summary { cursor: pointer; padding: 17px 20px; font-size: 18px; font-weight: 800; background: #efe6dc; }
+    .body { padding: 18px 20px 22px; display: grid; gap: 16px; }
+    .quote { border-left: 3px solid #b45a68; padding-left: 13px; color: #4f463f; }
+    .table-wrap { width: 100%; overflow-x: auto; border: 1px solid #eadfd2; border-radius: 8px; background: #fff; }
+    table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    th, td { padding: 12px 13px; border-bottom: 1px solid #eee3d7; text-align: left; vertical-align: top; line-height: 1.75; }
+    th { background: #f3ece4; color: #3a322c; }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .case-image { max-height: none; }
+    }
+  
+    .global-back-link {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 9px 13px;
+      border: 1px solid #e2d6c9;
+      border-radius: 999px;
+      background: rgba(255, 253, 249, 0.94);
+      color: #6f3f49;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 8px 22px rgba(61, 47, 35, 0.12);
+      backdrop-filter: blur(8px);
+    }
+    .global-back-link:hover { background: #fff; }
+  
+
+    /* Mobile readability polish */
+    @media (max-width: 680px) {
+      html { -webkit-text-size-adjust: 100%; }
+      body { font-size: 14px; line-height: 1.78; }
+      header { padding: 24px 14px 16px; }
+      main { padding: 16px 10px 52px; gap: 14px; }
+      h1 { font-size: clamp(26px, 8vw, 34px); line-height: 1.18; }
+      h2 { font-size: 20px; line-height: 1.3; }
+      h3 { font-size: 16px; line-height: 1.35; }
+      p, li { line-height: 1.75; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .search-panel { grid-template-columns: 1fr; gap: 10px; }
+      .card, article, .resource, .result, details, .topic-list li {
+        border-radius: 16px;
+        box-shadow: 0 10px 26px rgba(39, 34, 29, 0.045);
+      }
+      .card, article, .resource, .result, .topic-list li { padding: 12px; gap: 8px; }
+      summary { padding: 13px 14px; font-size: 16px; line-height: 1.35; }
+      .body { padding: 14px 12px 16px; gap: 12px; }
+      .resource-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .topic-list { grid-template-columns: 1fr; gap: 8px; }
+      .topic-list li { min-width: 0; }
+      .tag, .pill, .badge { font-size: 11px; line-height: 1.2; padding: 5px 7px; white-space: normal; }
+      .meta { font-size: 12px; }
+      .summary {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      article details:not([open]) + *,
+      .card p:not(:has(a)),
+      .resource p:not(:has(a)),
+      .result p {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      article details[open] .body {
+        max-height: 58vh;
+        overflow: auto;
+        overscroll-behavior: contain;
+      }
+      .global-back-link {
+        left: 10px;
+        bottom: 10px;
+        min-height: 34px;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .grid, .resource-list { grid-template-columns: 1fr; }
+      main { padding-left: 9px; padding-right: 9px; }
+    }
+
+  </style>
+</head>
+<body>
+  <a class="global-back-link" href="./one-on-one-students.html">返回上级</a>
+
+  <header>
+    <span class="tag">一对一专属 · 案例思路复盘</span>
+    <h1>下半年运势解读·思路复盘讲义（第四组）</h1>
+    <p>第四组重点训练：从单张关键牌定调，再用画面故事和元素逻辑补完整判断。</p>
+  </header>
+  <main>
+    <section class="hero">
+      <img class="case-image" src="./assets/case-h2-forecast-04.jpg" alt="下半年运势第四组案例牌阵图" />
+      <div class="panel">
+        <h2>怎么读这份讲义</h2>
+        <p>主题：下半年各方面运势（工作/学业、人际/感情、财运、健康）</p><p>用途：课后复习。让你看到我抽完牌之后，是怎么一步步从画面和元素想到结论的。</p>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>两条思路线</h2>
+      <p class="quote">先找定调的牌，再用画面和元素把结论落到现实。</p>
+      <h3>线 A：读牌心法（三步法）</h3>
+<ul><li>先看画面：构图、动作、视线、色调、物件，先描述不解读。</li><li>串成故事：几张牌连成一条情绪线/发展过程。</li><li>落到现实：把画面翻译成具体能做的事。</li></ul>
+<h3>线 B：元素能量（缺什么补什么）</h3>
+<p>口诀：哪种元素堆太多就滞在哪，缺什么补什么让它流动起来。</p>
+    </section>
+    <details>
+      <summary>元素能量速记</summary>
+      <div class="body">
+        <p>这一组继续使用“缺什么补什么”的元素逻辑，同时提醒学生：大牌可以先单独看主题。</p>
+        
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>元素</th><th>花色</th><th>太多了会怎样</th><th>用什么调</th></tr></thead>
+          <tbody><tr><td>火 / 权杖</td><td>行动、热情</td><td>急躁、烧得快</td><td>土稳、水降</td></tr><tr><td>水 / 圣杯</td><td>情感、直觉</td><td>沉溺、不落地</td><td>火行动、风理清</td></tr><tr><td>风 / 宝剑</td><td>思维、决断</td><td>焦虑、内耗</td><td>土落地、水安抚</td></tr><tr><td>土 / 星币</td><td>现实、身体、钱</td><td>滞涩、停滞</td><td>风搅动、火推进</td></tr></tbody>
+        </table>
+      </div>
+    
+      </div>
+    </details>
+    
+            <details>
+              <summary>工作 / 学业 · 星星 · 圣杯八 · 隐士 · 星币四</summary>
+              <div class="body">
+                <p>牌阵：星星 · 圣杯八 · 隐士 · 星币四</p>
+<h3>画面 → 我的解读（逐张对应）</h3>
+<h3>串成一个故事</h3>
+<p>有高远的目标和潜力（星星）→ 主动舍弃旧环境去找出口（圣杯八）→ 靠自己独处钻研、不依赖团队（隐士）→ 整体稳扎稳打、打基础为主（星币四）。结论：困难不少、换环境是好事，但晋升不大，重在学习和积累。</p>
+<h3>给求测者的完整解读</h3>
+<p>事业学业下半年困难不算少，会有想要换环境、专业、工作、方向的情况。有一部分人下半年会有调职、去外地工作之类的，或者真的换了一个新环境工作，不过整体是好事，这份工作/学习能够让你收益很多、学到很多东西。如果是搞科研的，或者不依赖团队的工作，这部分人能够做得不错。</p>
+<p>学生的话，下半年处于一直汲取知识的状态里，会对自己的学业有比较好的想法和目标，有潜力能达到，但是行动力这方面可能稍微弱一点，或者在遇到困难的时候会显得力不从心、有疲惫感。</p>
+<p>不论从学业还是事业的角度，这一组晋升希望不大，因为目前还是需要多去学习、多去提升自己的状态里。靠专业技能吃饭的人，有条件的可以尝试去考证之类的找专业背书。发展以稳定为主，不会有太大的变化，适合打基础。</p>
+                
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>牌</th><th>画面我看到了什么</th><th>我从这里想到</th></tr></thead>
+          <tbody><tr><td>星星</td><td>仰视视角，白裙女性伸手对着窗外，头顶和窗外都是天上的星星。</td><td>希望、目标、潜力在「上方」。有很好的想法和方向，能汲取、能成长，但星星在天上=要仰头去够，行动力得跟上。</td></tr><tr><td>圣杯八</td><td>没有人物，一堆狼藉，后面有一个出口。</td><td>主动离开、舍弃旧的去找更值得的。对应想换环境、换方向——而且后面有出口=是有去处的，是好事。</td></tr><tr><td>隐士</td><td>一个抽烟的男性，一边点烟一边回头看，像在躲人。</td><td>独处、向内、不靠团队。适合搞科研、不依赖团队的人；也带点想避开人群、自己钻研的味道。</td></tr><tr><td>星币四</td><td>车水马龙的街边，一栋用星币层层叠起来铸成的大楼。</td><td>稳固、积累、打基础。稳定为主、变化不大，适合一砖一瓦地垒——但也偏「守」，不是大跃迁。</td></tr></tbody>
+        </table>
+      </div>
+    
+              </div>
+            </details>
+            
+            <details>
+              <summary>人际 / 感情 · 星币七 · 世界 · 审判 · 星币五</summary>
+              <div class="body">
+                <p>牌阵：星币七 · 世界 · 审判 · 星币五</p>
+<h3>画面 → 我的解读（逐张对应）</h3>
+<h3>串成一个故事</h3>
+<p>在掂量、观望、进展慢（星币七）→ 站在一个该了结的节点但前路不明（世界）→ 积压已久的旧问题到了必须清算的时刻（审判）→ 现实压力大于感情、疲惫匮乏（星币五）。结论：人际感情有障碍，是清理旧能量、正面解决的阶段。</p>
+<h3>给求测者的完整解读</h3>
+<p>人际和感情这一块感觉会有障碍。单身的人比较难遇到新的桃花，你们可能尝试过去扩展社交圈，但效果不太好，性格比较内向。从人际的角度看，你和友情之间的维系可能会让你觉得累，本质上是方向不太对，一个讲东一个讲西，友情中会有一些积怨已久的事情需要正面去面对处理。</p>
+<p>你可能会觉得惋惜，但这属于一个清理掉旧能量的友情的步骤。有伴侣的人要正视一下你们关系之间的问题，你们的问题大概率已经有很长时间了，但谁都没有面对、没有正视。关系的经营让你感到疲惫，你有点不知道继续走下去会面临什么，或者有什么意义。</p>
+<p>这组有异地的，或者经济和现实条件不支持的情侣，要注意沟通方式。虽然没有明显的吵架，但会有一种鸡同鸭讲的疲惫感。你们关系中现实的责任和压力大于感情的流动，可能互相没有太多激情了，感情是需要额外去付出精力的地方。针对你们以前的相处方式、态度，或者一些关系中曾经犯下的错误，都到了一个必须要去解决面对的时刻。</p>
+                
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>牌</th><th>画面我看到了什么</th><th>我从这里想到</th></tr></thead>
+          <tbody><tr><td>星币七</td><td>一个女性看着手里的表，下面堆着一堆星币。</td><td>在「评估、等待、衡量值不值得」。对应感情里那种掂量、观望，进展慢、不容易有新桃花。</td></tr><tr><td>世界（楼梯那张）</td><td>一个人站在楼梯最下方往上看，天花垂满藤蔓，尽头没有明显建筑。</td><td>站在一个阶段的门口往上看，但前方不明朗。关系要进入新阶段/做了结，可去向不清晰。</td></tr><tr><td>审判（小孩孤独坐着，周围乱七八糟，右上角有韦特审判小图）</td><td>一个小孩孤独地坐在一堆杂乱的东西里，右上角是韦特审判的小图。</td><td>清算、面对、做了结。孤独+杂乱=积压已久没人面对的旧问题，现在到了必须正视处理的时刻。</td></tr><tr><td>星币五</td><td>一个流浪汉坐着愁眉苦脸，色调灰冷。</td><td>匮乏、被冷落、疲惫。关系里现实压力大于情感流动，有种被掏空、鸡同鸭讲的累。</td></tr></tbody>
+        </table>
+      </div>
+    
+              </div>
+            </details>
+            
+            <details>
+              <summary>财运 · 权杖六 · 圣杯国王 · 星币三 · 权杖国王</summary>
+              <div class="body">
+                <p>牌阵：权杖六 · 圣杯国王 · 星币三 · 权杖国王</p>
+<h3>画面 → 我的解读（逐张对应）</h3>
+<h3>串成一个故事</h3>
+<p>有成果、能拿尾款（权杖六）→ 合作人脉带来钱、但要留心人情（圣杯国王）→ 靠专业协作赚钱（星币三）→ 个人能力强、能主导副业项目（权杖国王）。结论：财运整体偏好，钱从合作和工作来，但合作签约要看清条款。</p>
+<h3>给求测者的完整解读</h3>
+<p>财运，这组整体偏好，感觉没有什么特别要说的。金钱从合作、从工作中来，如果有做副业的话也能提供一笔收入。个人能力不错，能拿到项目尾款，能得到好的成果。如果有人找你合作的话要注意一下，不要光看着对方好像很厉害就轻易答应，多去关注条款、合同。</p>
+<p>另外这组花钱的地方也有，可能会买一些品牌的东西，或者彰显自己价值的、有质感的东西。整体趋势向好。</p>
+                
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>牌</th><th>画面我看到了什么</th><th>我从这里想到</th></tr></thead>
+          <tbody><tr><td>权杖六</td><td>捧着奖杯、挂着奖牌、握拳，周围彩带。</td><td>胜利、被认可、有成果。对应能拿到好结果、项目尾款，能力被看见。</td></tr><tr><td>圣杯国王</td><td>举着酒杯微笑，有给予和人情往来的能量。</td><td>合作、人脉带来钱。但也提醒：别光看对方厉害就轻易答应，人情里要留个心眼。</td></tr><tr><td>星币三</td><td>工匠在教堂搭架子干活，旁边有人看着、配合。</td><td>靠协作、靠专业技能赚钱。多人合作、专业被需要——钱从合作和工作中来。</td></tr><tr><td>权杖国王</td><td>掌控全局、有魄力的领导能量。</td><td>个人能力强、能主导。副业、主导项目都能带来收入。但权大也意味着要为决策负责，签约要看清条款。</td></tr></tbody>
+        </table>
+      </div>
+    
+              </div>
+            </details>
+            
+            <details>
+              <summary>健康 · 圣杯七 · 星币十 · 节制 · 命运之轮</summary>
+              <div class="body">
+                <p>牌阵：圣杯七 · 星币十 · 节制 · 命运之轮</p>
+<h3>画面 / 元素 → 我的解读（逐张对应）</h3>
+<p>元素小结：这组主要是大牌（节制、命运之轮）讲「循环与调和」+ 圣杯（水）讲「虚实反复」+ 星币（土）讲「体质与遗传」。所以健康钥匙是：承认它是周期性的老问题，靠节制和调养去维持平衡，而不是指望一次根治。</p>
+<h3>给求测者的完整解读</h3>
+<p>健康方面，这组我考虑有家族遗传的因素在里面。这个不是说你有基因问题，更像是某一种体质你家人就有，到你身上的时候还在，然后后期你对于某种疾病或者环境会有更明显的反应或者检测数值。</p>
+<p>这组有季节性的毛病，皮肤过敏、湿疹、鼻炎等等，不太容易好透，但处在缓解的状态中，有复发的概率，有在吃药的人。另外这组饮食方面要注意一下，吃喝比较多且杂，肠胃消化可能不太好。</p>
+                
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>牌</th><th>画面/含义</th><th>我从这里想到</th></tr></thead>
+          <tbody><tr><td>星币十</td><td>家族、传承、血脉、代际格局。</td><td>这是我判断「家族遗传/家族体质」的关键牌——不是基因病，而是某种体质家里人就有，到你身上还在。</td></tr><tr><td>圣杯七</td><td>面前飘着许多幻象杯子，虚实难辨。</td><td>身体里那种「时好时坏、看不太清」的状态。对应季节性、过敏类的毛病——不太容易好透，缓解中又会冒出来。</td></tr><tr><td>节制</td><td>天使在两个杯子间倒水，调和、平衡、节律。</td><td>调理、节制、平衡。提醒在缓解中、要靠调养维持；也指向饮食要节制、别太杂。</td></tr><tr><td>命运之轮</td><td>轮子转动，周期、循环、起落。</td><td>周期性、会复发。季节一到、循环一到就反复——所以是「处在缓解但有复发概率」的状态。</td></tr></tbody>
+        </table>
+      </div>
+    
+              </div>
+            </details>
+            
+    <section class="panel">
+      <h2>给学生的练习作业</h2>
+      <p>挑上面任意一组牌，盖住「我的解读」，按下面顺序走一遍：</p>
+<ul><li>只描述：每张牌「我看到了什么」用大白话说出来。</li><li>数元素：火/水/风/土各几张？哪种最多、哪种缺？（大牌单独看主题）</li><li>串故事 + 调元素：画面串成一条线，再用「缺什么补什么」给一句建议。</li><li>落现实 + 对照：翻牌义和我的解读，看看差在哪。</li></ul>
+<p>这一组要特别体会的点：有些结论是从「单张关键牌」直接锚定的——比如健康组我一看到星币十，就先想到「家族/体质遗传」，再用其他牌去补「周期性、反复、调养」。学会找到那张「定调的牌」，整组就有了主心骨。</p>
+    </section>
+  </main>
+
+  <script src="./assets/access-gate.js" data-access="one"></script>
+</body>
+</html>

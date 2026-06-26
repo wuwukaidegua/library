@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>老师自用区</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif; color: #292723; background: #fbf8f3; }
+    header { padding: 34px clamp(18px, 4vw, 54px); border-bottom: 1px solid #ded6ca; background: #fff; }
+    h1 { margin: 0 0 12px; font-size: clamp(30px, 4vw, 48px); letter-spacing: 0; }
+    h2 { margin: 0; font-size: 24px; letter-spacing: 0; }
+    h3 { margin: 0; font-size: 18px; letter-spacing: 0; }
+    p { margin: 0; color: #655f57; line-height: 1.75; }
+    a { color: #8c4d5a; font-weight: 700; }
+    main { padding: 24px clamp(18px, 4vw, 54px) 58px; display: grid; gap: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .sources { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+    .card, details { background: #fff; border: 1px solid #ded6ca; border-radius: 8px; box-shadow: 0 10px 26px rgba(39, 34, 29, 0.06); }
+    .card { padding: 18px; display: grid; gap: 10px; align-content: start; }
+    details { overflow: clip; }
+    summary { cursor: pointer; padding: 16px 18px; font-weight: 800; font-size: 18px; background: #f4eee7; }
+    .body { padding: 16px 18px 18px; display: grid; gap: 14px; }
+    .tag { display: inline-block; width: fit-content; border-radius: 999px; background: #496c63; color: #fff; padding: 4px 9px; font-size: 12px; font-weight: 700; }
+    .private { background: #b45a68; }
+    .muted { color: #766e66; font-size: 13px; }
+    .warning { border-left: 3px solid #b45a68; padding: 10px 12px 10px 14px; color: #4d4741; background: #fff8f8; }
+    ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; color: #625c55; line-height: 1.7; }
+    .template { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; background: #fff; }
+    th, td { border: 1px solid #e4dbcf; padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f4eee7; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+    body::before { content: ""; position: fixed; left: 0; right: 0; top: 0; height: 3px; z-index: 20; background: linear-gradient(90deg, transparent, #c89b3c 16%, #f2dfaa 50%, #c89b3c 84%, transparent); box-shadow: 0 1px 10px rgba(168, 122, 45, 0.22); pointer-events: none; }
+    .card, details { border-radius: 18px; box-shadow: 0 14px 34px rgba(39, 34, 29, 0.055); }
+    .card { transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background 200ms ease; }
+    .card:hover { transform: translateY(-4px); border-color: rgba(168, 122, 45, 0.28); box-shadow: 0 20px 48px rgba(39, 34, 29, 0.09); }
+    summary { border-radius: 18px 18px 0 0; }
+    details:not([open]) summary { border-radius: 18px; }
+    .tag { color: #4a4037; background: rgba(255,255,255,0.76); border: 1px solid rgba(168, 122, 45, 0.28); box-shadow: inset 0 1px 0 rgba(255,255,255,0.8); }
+    .private { color: #874454; background: rgba(180, 90, 104, 0.12); border-color: rgba(180, 90, 104, 0.3); }
+  
+    .global-back-link {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 9px 13px;
+      border: 1px solid #e2d6c9;
+      border-radius: 999px;
+      background: rgba(255, 253, 249, 0.94);
+      color: #6f3f49;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 8px 22px rgba(61, 47, 35, 0.12);
+      backdrop-filter: blur(8px);
+    }
+    .global-back-link:hover { background: #fff; }
+  
+
+    /* Mobile readability polish */
+    @media (max-width: 680px) {
+      html { -webkit-text-size-adjust: 100%; }
+      body { font-size: 14px; line-height: 1.78; }
+      header { padding: 24px 14px 16px; }
+      main { padding: 16px 10px 52px; gap: 14px; }
+      h1 { font-size: clamp(26px, 8vw, 34px); line-height: 1.18; }
+      h2 { font-size: 20px; line-height: 1.3; }
+      h3 { font-size: 16px; line-height: 1.35; }
+      p, li { line-height: 1.75; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .search-panel { grid-template-columns: 1fr; gap: 10px; }
+      .card, article, .resource, .result, details, .topic-list li {
+        border-radius: 16px;
+        box-shadow: 0 10px 26px rgba(39, 34, 29, 0.045);
+      }
+      .card, article, .resource, .result, .topic-list li { padding: 12px; gap: 8px; }
+      summary { padding: 13px 14px; font-size: 16px; line-height: 1.35; }
+      .body { padding: 14px 12px 16px; gap: 12px; }
+      .resource-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .topic-list { grid-template-columns: 1fr; gap: 8px; }
+      .topic-list li { min-width: 0; }
+      .tag, .pill, .badge { font-size: 11px; line-height: 1.2; padding: 5px 7px; white-space: normal; }
+      .meta { font-size: 12px; }
+      .summary {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      article details:not([open]) + *,
+      .card p:not(:has(a)),
+      .resource p:not(:has(a)),
+      .result p {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      article details[open] .body {
+        max-height: 58vh;
+        overflow: auto;
+        overscroll-behavior: contain;
+      }
+      .global-back-link {
+        left: 10px;
+        bottom: 10px;
+        min-height: 34px;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .grid, .resource-list { grid-template-columns: 1fr; }
+      main { padding-left: 9px; padding-right: 9px; }
+    }
+
+  </style>
+</head>
+<body>
+  <a class="global-back-link" href="./index.html">返回上级</a>
+
+  
+
+  
+
+  <header>
+    <span class="tag private">仅老师自用</span>
+    <h1>老师自用区</h1>
+    <p>老师自用的备课资料、英文文献翻译、私人研究和草药资料入口。内容按主题索引，方便你自己查找、补课和继续扩展。</p>
+  </header>
+
+  <main>
+    <div class="grid">
+      <article class="card">
+        <span class="tag private">草药</span>
+        <h3>草药文献库</h3>
+        <p>英文文献翻译后会整理到这里，按草药名、传统用途、现代研究、风险禁忌、来源和你的备注归档。</p>
+      </article>
+      <article class="card">
+        <span class="tag">提取策略</span>
+        <h3>先提有用结构</h3>
+        <p>这批书不按整本硬搬，先提取制作方法、草药象征、季节主题、资料库模板和风险边界。</p>
+      </article>
+      <article class="card">
+        <span class="tag">边界</span>
+        <h3>不做医疗建议</h3>
+        <p>草药内容只作为学习、备课和研究资料；涉及身体、疾病、剂量和药物相互作用时保留风险提示。</p>
+      </article>
+    </div>
+
+
+
+
+
+
+    <details open>
+      <summary>已导入 · 工具.docx 归纳</summary>
+      <div class="body">
+        <p class="warning">工具.docx 已拆成独立资料库：工具、祭坛、视觉化、魔法原则、草药魔化、应用形式、四元素法术、配方实践笔记，以及 320 个草药属性条目。</p>
+        <div class="grid">
+          <article class="card">
+            <span class="tag private">工具流程</span>
+            <h3>工具与草药魔化</h3>
+            <p>包含研钵研杵、木碗/陶碗、草药壶、缝纫用品、蜡烛、香炉、储存罐、祭坛设置、视觉化与魔化流程。</p>
+          </article>
+          <article class="card">
+            <span class="tag">应用形式</span>
+            <h3>香包、人偶、浸剂、沐浴、油膏、精油、熏香</h3>
+            <p>已整理成可查卡片，适合备课时快速确定“这个草药要用什么形式”。</p>
+          </article>
+          <article class="card">
+            <span class="tag">属性速查</span>
+            <h3>320 个草药条目</h3>
+            <p>可按草药名、元素、行星、力量和风险提示搜索。<a href="./herbal-tools.html">打开草药工具与属性库</a></p>
+          </article>
+        </div>
+      </div>
+    </details>
+
+    <details open>
+      <summary>本次资料源 · 7 份文件</summary>
+      <div class="body">
+        <p class="warning">这批书里有两份《The Witch's Herbal Apothecary》重复，我会只整理一份。带有版权的书不会整本复制进网页，只做你自用的中文摘要、索引、来源页码和备课备注。</p>
+        <div class="sources">
+          <article class="card">
+            <span class="tag">优先级高</span>
+            <h3>The Herbal Medicine-Maker's Handbook</h3>
+            <p>James Green · 599 页</p>
+            <p>适合提取：工具、采收、干燥、浸泡、煎煮、酊剂、糖浆、蜂蜜、外用敷布、保存和安全边界。</p>
+          </article>
+          <article class="card">
+            <span class="tag">象征资料</span>
+            <h3>The Magic of Herbs</h3>
+            <p>David Conway · 202 页</p>
+            <p>适合提取：草药传统象征、占星对应、花语、草药魔法资料表。</p>
+          </article>
+          <article class="card">
+            <span class="tag">季节草药</span>
+            <h3>The Witch's Herbal Apothecary</h3>
+            <p>Marysia Miernowska · 382 页</p>
+            <p>适合提取：春夏秋冬主题、土地连接、药草灵性实践和仪式结构。6 号和 12 号是重复文件。</p>
+          </article>
+          <article class="card">
+            <span class="tag">资料库结构</span>
+            <h3>The Green Witch's Grimoire</h3>
+            <p>Arin Murphy-Hiscock · 228 页</p>
+            <p>适合提取：个人魔法书结构、自然魔法记录法、草药笔记模板。</p>
+          </article>
+          <article class="card">
+            <span class="tag">年度框架</span>
+            <h3>Year of the Witch</h3>
+            <p>Temperance Alden · 186 页</p>
+            <p>适合提取：年度节气、季节能量、直觉式仪式和课程灵感。</p>
+          </article>
+          <article class="card">
+            <span class="tag">中文校对</span>
+            <h3>魔藥學</h3>
+            <p>Scott Cunningham · 400 页</p>
+            <p>适合提取：中文/繁中术语、草药魔法对应，用来和英文资料互相校对。</p>
+          </article>
+        </div>
+      </div>
+    </details>
+
+    <details open>
+      <summary>草药条目模板 · 待导入</summary>
+      <div class="body">
+        <p class="warning">草药、补剂和身体议题容易涉及过敏、妊娠、慢性病、药物相互作用等风险。后续每个条目都会保留来源和风险提示，避免写成“保证有效”的结论。</p>
+        <div class="template">
+          <table>
+            <thead>
+              <tr>
+                <th>草药名</th>
+                <th>英文名 / 拉丁名</th>
+                <th>中文翻译摘要</th>
+                <th>象征 / 魔法用途</th>
+                <th>制作或使用方式</th>
+                <th>禁忌与风险</th>
+                <th>文献来源</th>
+                <th>你的备注</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>待导入</td>
+                <td>待导入</td>
+                <td>按主题补充来源摘录。</td>
+                <td>待导入</td>
+                <td>待导入</td>
+                <td>待导入</td>
+                <td>书名 + 页码</td>
+                <td>待导入</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details open>
+      <summary>已整理入库 · 制作方法</summary>
+      <div class="body">
+        <p class="warning">以下是从《The Herbal Medicine-Maker's Handbook》提取成中文备课摘要的制作方法框架。仅作为备课索引，不放具体剂量。</p>
+        <div class="sources">
+          <article class="card">
+            <span class="tag">制作方法</span>
+            <h3>浸泡 Infusion</h3>
+            <p>偏向用热水萃取较柔软、芳香或易释放成分的植物材料，例如叶、花、较轻的地上部分。备课时可以理解成“像泡茶一样的温和萃取”。</p>
+            <p class="muted">风险：涉及内服时必须回到来源、体质和禁忌，不写成通用配方。</p>
+          </article>
+          <article class="card">
+            <span class="tag">制作方法</span>
+            <h3>煎煮 Decoction</h3>
+            <p>偏向处理较硬、较密实的植物材料，例如根、树皮、种子等，需要更长时间和更强的热萃取。</p>
+            <p class="muted">风险：芳香类材料可能因长时间加热损失气味，不适合所有草药。</p>
+          </article>
+          <article class="card">
+            <span class="tag">制作方法</span>
+            <h3>酊剂 Tincture</h3>
+            <p>用酒精等溶剂萃取植物成分，常见路径包括浸渍和渗滤。适合做成“制作方法专题”，不适合直接给学生当配方使用。</p>
+            <p class="muted">风险：酒精、药物相互作用、肝病、孕期、儿童等情况需要避开或谨慎。</p>
+          </article>
+          <article class="card">
+            <span class="tag">制作方法</span>
+            <h3>醋剂 Vinegar Infusion</h3>
+            <p>用醋作为溶剂做草药浸出，适合整理到“厨房草药/民俗草药”方向。</p>
+            <p class="muted">风险：胃酸、口腔/食道刺激、药物和疾病情况都要单独标注。</p>
+          </article>
+          <article class="card">
+            <span class="tag">制作方法</span>
+            <h3>甘油剂 Glycerite</h3>
+            <p>用甘油作为溶剂，常被放在不使用酒精的替代路径里。适合做成“溶剂差异”备课卡。</p>
+            <p class="muted">风险：依然不是自动安全；糖代谢、保存和污染风险需要注意。</p>
+          </article>
+          <article class="card">
+            <span class="tag">制作方法</span>
+            <h3>糖浆/蜂蜜/氧蜜</h3>
+            <p>把草药与甜味、酸味载体结合，常用于风味、保存和日常使用场景。适合做成“草药厨房”专题。</p>
+            <p class="muted">风险：糖分、蜂蜜禁忌、儿童年龄、过敏和保存条件必须标注。</p>
+          </article>
+          <article class="card">
+            <span class="tag">外用</span>
+            <h3>浴方 Baths</h3>
+            <p>偏外用和身体感受方向，适合与放松、清洁、仪式感结合，作为老师自用灵感。</p>
+            <p class="muted">风险：皮肤敏感、精油刺激、伤口、孕期和水温风险要单独提醒。</p>
+          </article>
+          <article class="card">
+            <span class="tag">外用</span>
+            <h3>敷布/热敷</h3>
+            <p>偏外用处理方式，可整理为“身体照护民俗/外用方法”专题。</p>
+            <p class="muted">风险：不能替代医疗处理；开放性伤口、感染、烫伤和过敏风险需要避开。</p>
+          </article>
+        </div>
+      </div>
+    </details>
+
+    <details open>
+      <summary>已整理入库 · 象征与季节框架</summary>
+      <div class="body">
+        <div class="grid">
+          <article class="card">
+            <span class="tag">草药象征</span>
+            <h3>草药与占星</h3>
+            <p>可作为草药象征资料的一个维度：将植物与行星、元素、气质或传统象征联系起来。适合做神秘学备课，不写成医学因果。</p>
+          </article>
+          <article class="card">
+            <span class="tag">草药象征</span>
+            <h3>形象对应</h3>
+            <p>植物的颜色、形状、气味或生长方式可用于联想其象征意义。适合解释传统观念，不等于现代医学证据。</p>
+          </article>
+          <article class="card">
+            <span class="tag">草药象征</span>
+            <h3>花语与植物语言</h3>
+            <p>适合和塔罗、仪式、课程美学结合，作为花草象征、属性和用法的速查入口。</p>
+          </article>
+        </div>
+        <div class="template">
+          <table>
+            <thead>
+              <tr>
+                <th>季节</th>
+                <th>主题</th>
+                <th>适合变成什么内容</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>春季</td>
+                <td>复苏、唤醒、欲望、重新生长</td>
+                <td>新开始、身体感回归、课程开篇、春季仪式灵感</td>
+              </tr>
+              <tr>
+                <td>夏季</td>
+                <td>成熟、行动、外放、转化</td>
+                <td>行动力、热情、创造力、火元素相关课程灵感</td>
+              </tr>
+              <tr>
+                <td>秋季</td>
+                <td>收获、腐熟、智慧、魔法整合</td>
+                <td>复盘、结束、收获、祖先/土地主题</td>
+              </tr>
+              <tr>
+                <td>冬季</td>
+                <td>休眠、沉入、修复、内在聆听</td>
+                <td>休整、阴影工作、年末复盘、个人仪式</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details open>
+      <summary>可纳入 · 草药厨房与菜谱</summary>
+      <div class="body">
+        <p class="warning">菜谱类内容会整理成“制作灵感 + 风味 + 象征主题 + 禁忌风险 + 来源”，不直接照搬书中完整配方，也不写成治疗用方。</p>
+        <div class="sources">
+          <article class="card">
+            <span class="tag">草药厨房</span>
+            <h3>草药茶 / 浸泡饮</h3>
+            <p>把柔软的叶、花、芳香材料做成热水浸泡类饮品。适合记录风味、象征、季节和身体感受。</p>
+            <p class="muted">字段：草药组合、风味、象征主题、适合季节、禁忌、来源、个人备注。</p>
+          </article>
+          <article class="card">
+            <span class="tag">草药厨房</span>
+            <h3>煎煮饮</h3>
+            <p>用于较硬的根、树皮、种子等材料。适合做“慢火、沉淀、扎根、保护”类象征备课。</p>
+            <p class="muted">字段：材料类型、煎煮逻辑、象征主题、风险、来源、个人备注。</p>
+          </article>
+          <article class="card">
+            <span class="tag">草药厨房</span>
+            <h3>草药蜂蜜 / 糖浆</h3>
+            <p>把草药与甜味载体结合，适合整理成民俗草药、季节风味和仪式感食谱。</p>
+            <p class="muted">字段：草药、载体、风味、象征主题、保存、禁忌、来源。</p>
+          </article>
+          <article class="card">
+            <span class="tag">草药厨房</span>
+            <h3>氧蜜 Oxymel</h3>
+            <p>以蜂蜜和醋作为核心载体的草药制作方向，适合放在“酸甜平衡、保护、清理、转换”主题里。</p>
+            <p class="muted">字段：草药、蜂蜜/醋比例备注、象征主题、风味、禁忌、来源。</p>
+          </article>
+          <article class="card">
+            <span class="tag">外用灵感</span>
+            <h3>浴方 / 足浴</h3>
+            <p>偏外用和仪式感，适合记录放松、清洁、睡前、保护、复苏等主题。</p>
+            <p class="muted">字段：草药、水温、象征主题、皮肤风险、禁忌、来源。</p>
+          </article>
+          <article class="card">
+            <span class="tag">魔法用途</span>
+            <h3>香囊 / 草药包</h3>
+            <p>不涉及内服，适合整理保护、睡眠、吸引、清理、学习等象征用途。</p>
+            <p class="muted">字段：草药组合、用途、元素/行星、携带方式、来源、个人备注。</p>
+          </article>
+        </div>
+      </div>
+    </details>
+
+    <details open>
+      <summary>可纳入 · 草药属性速查</summary>
+      <div class="body">
+        <p>草药属性可以做成像牌义库一样的速查表。后续从《The Magic of Herbs》《魔藥學》和其他来源逐条校对。</p>
+        <div class="template">
+          <table>
+            <thead>
+              <tr>
+                <th>中文名</th>
+                <th>英文名 / 拉丁名</th>
+                <th>元素</th>
+                <th>行星</th>
+                <th>魔法用途</th>
+                <th>可用部位 / 形式</th>
+                <th>禁忌与风险</th>
+                <th>来源</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>待导入</td>
+                <td>待校对</td>
+                <td>待校对</td>
+                <td>待校对</td>
+                <td>保护、净化、爱情、睡眠、繁荣、疗愈象征等</td>
+                <td>叶、花、根、树皮、种子；茶、酊剂、香囊、浴方等</td>
+                <td>过敏、孕期、儿童、慢性病、药物相互作用等需要单独标注</td>
+                <td>书名 + 页码</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>整理范围</summary>
+      <div class="body">
+        <ul>
+          <li>先从《The Herbal Medicine-Maker's Handbook》提取制作方法和安全边界。</li>
+          <li>再从《The Magic of Herbs》和《魔藥學》整理草药象征与对应关系。</li>
+          <li>最后从季节类书籍整理春夏秋冬主题，做成课程灵感和仪式备课资料。</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+  <script src="./assets/access-gate.js" data-access="teacher"></script>
+</body>
+</html>

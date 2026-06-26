@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>塔罗教学知识库</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #241f1b;
+      --ink-soft: #37302a;
+      --muted: #82786f;
+      --muted-soft: #9a9087;
+      --line: #ece3d6;
+      --line-strong: #d9cab6;
+      --paper: #faf6ef;
+      --panel: #ffffff;
+      --plum: #6b4d74;
+      --rose: #b06a72;
+      --green: #5b7e72;
+      --gold: #b8893f;
+      --blue: #5a6f8c;
+      --shadow-sm: 0 2px 10px rgba(63, 48, 40, 0.045);
+      --shadow-md: 0 12px 40px rgba(63, 48, 40, 0.075);
+      --shadow-lg: 0 24px 60px rgba(63, 48, 40, 0.10);
+      --radius: 18px;
+      --radius-lg: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 12% -5%, rgba(107, 77, 116, 0.10), transparent 60%),
+        radial-gradient(800px 500px at 100% 0%, rgba(184, 137, 63, 0.08), transparent 55%),
+        linear-gradient(160deg, #faf6ef 0%, #f4eee4 55%, #f9f5ee 100%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 3px;
+      z-index: 20;
+      background: linear-gradient(90deg, transparent, #c89b3c 16%, #f2dfaa 50%, #c89b3c 84%, transparent);
+      box-shadow: 0 1px 10px rgba(168, 122, 45, 0.22);
+      pointer-events: none;
+    }
+
+    button, input, select { font: inherit; }
+    h1, h2, h3, p { margin: 0; }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 296px minmax(0, 1fr);
+    }
+
+    aside {
+      border-right: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(22px);
+      padding: 34px 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+    }
+
+    .brand {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+
+    .mark {
+      width: 60px;
+      height: 78px;
+      border-radius: 14px;
+      background: linear-gradient(155deg, #6b4d74 0%, #4f3a59 100%);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 14px 30px rgba(79, 58, 89, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mark::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    .mark span {
+      position: relative;
+      z-index: 1;
+      width: 30px;
+      height: 30px;
+      color: #fff;
+    }
+
+    .mark span::before {
+      content: "✦";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    h1 {
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.34;
+      letter-spacing: 0.5px;
+      font-weight: 800;
+    }
+
+    .brand p,
+    .small {
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.78;
+    }
+
+    nav { display: grid; gap: 6px; }
+
+    nav button {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      letter-spacing: 0.28px;
+      transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    nav button::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--line-strong);
+      transition: background 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    nav button:hover {
+      color: var(--ink);
+      background: rgba(107, 77, 116, 0.06);
+      transform: translateX(2px);
+    }
+
+    nav button.active {
+      background: #fff;
+      color: var(--plum);
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+
+    nav button.active::before {
+      background: var(--plum);
+      box-shadow: 0 0 0 4px rgba(107, 77, 116, 0.14);
+    }
+
+    main {
+      padding: 40px 44px 56px;
+      display: grid;
+      gap: 28px;
+      align-content: start;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 200px;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .search,
+    .role,
+    .birth-input {
+      width: 100%;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.86);
+      padding: 14px 16px;
+      min-width: 0;
+      outline: none;
+      color: var(--ink-soft);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .search:focus,
+    .role:focus,
+    .birth-input:focus {
+      border-color: var(--plum);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(107, 77, 116, 0.11);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+      gap: 28px;
+      align-items: center;
+      padding: 44px 46px;
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(600px 300px at 90% 20%, rgba(107, 77, 116, 0.10), transparent 70%),
+        linear-gradient(135deg, #ffffff 0%, #fbf7f1 100%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--gold), var(--plum));
+    }
+
+    .hero-copy {
+      display: grid;
+      align-content: center;
+      gap: 16px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h2 {
+      color: var(--ink);
+      font-size: clamp(32px, 4.5vw, 50px);
+      line-height: 1.16;
+      letter-spacing: 0.4px;
+      font-weight: 850;
+      max-width: 720px;
+    }
+
+    .hero-copy p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+      max-width: 560px;
+    }
+
+    .tableau { position: relative; min-height: 280px; }
+
+    .tarot-card {
+      position: absolute;
+      width: 150px;
+      aspect-ratio: 3 / 4.55;
+      border-radius: 16px;
+      border: 1px solid rgba(107, 77, 116, 0.18);
+      background: linear-gradient(160deg, #ffffff, #fbf7f2);
+      box-shadow: var(--shadow-lg);
+      padding: 14px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tarot-card::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(184, 137, 63, 0.35);
+      border-radius: 11px;
+      pointer-events: none;
+    }
+
+    .tarot-card b {
+      z-index: 1;
+      color: var(--ink);
+      font-size: 12.5px;
+      letter-spacing: 0.35px;
+      line-height: 1.4;
+    }
+
+    .tarot-card i {
+      z-index: 1;
+      place-self: center;
+      position: relative;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 137, 63, 0.36);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.88) 0 30%, transparent 31%),
+        repeating-conic-gradient(from 12deg, rgba(184,137,63,0.24) 0 9deg, transparent 9deg 22deg),
+        linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,255,255,0.28));
+      box-shadow: inset 0 0 0 7px rgba(255,255,255,0.34);
+    }
+
+    .tarot-card i::before,
+    .tarot-card i::after {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: var(--plum);
+      font-style: normal;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.75);
+    }
+
+    .card-a i::before { content: "✦"; font-size: 30px; }
+    .card-a i::after { content: ""; width: 42px; height: 42px; border: 1px solid rgba(107, 77, 116, 0.34); border-radius: 50%; transform: rotate(18deg); }
+    .card-b i::before { content: "☾"; font-size: 38px; transform: translateX(3px); }
+    .card-b i::after { content: ""; width: 44px; height: 1px; background: linear-gradient(90deg, transparent, rgba(107, 77, 116, 0.48), transparent); transform: rotate(-24deg); }
+    .card-c i::before { content: "✧"; font-size: 32px; }
+    .card-c i::after { content: ""; width: 30px; height: 48px; border-left: 1px solid rgba(107, 77, 116, 0.38); border-right: 1px solid rgba(107, 77, 116, 0.38); transform: rotate(32deg); }
+
+    .tarot-card span {
+      z-index: 1;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .card-a { left: 6%; top: 18px; transform: rotate(-9deg); background: linear-gradient(150deg, #fff9f3, #f8eee8); }
+    .card-b { left: 36%; top: 48px; transform: rotate(6deg); z-index: 2; background: linear-gradient(150deg, #f7fcf9, #eef6f2); }
+    .card-c { right: 2%; top: 6px; transform: rotate(-2deg); background: linear-gradient(150deg, #faf7ff, #f1edf7); }
+    .tableau:hover .card-a { transform: rotate(-12deg) translateY(-4px); }
+    .tableau:hover .card-b { transform: rotate(6deg) translateY(-8px); }
+    .tableau:hover .card-c { transform: rotate(1deg) translateY(-4px); }
+
+    .section { display: none; gap: 18px; opacity: 0; transform: translateY(8px); }
+    .section.active {
+      display: grid;
+      animation: sectionEnter 460ms ease both;
+    }
+
+    @keyframes sectionEnter {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-head {
+      display: grid;
+      gap: 5px;
+      margin-bottom: 2px;
+    }
+
+    .section-head h3 {
+      color: var(--ink);
+      font-size: 19px;
+      line-height: 1.45;
+      letter-spacing: 0.35px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      min-height: 158px;
+      display: grid;
+      gap: 13px;
+      align-content: start;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: cardFadeUp 520ms ease both;
+      animation-delay: var(--delay, 0ms);
+      transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, background 0.24s ease;
+    }
+
+    @keyframes cardFadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .card h3 {
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.48;
+      letter-spacing: 0.28px;
+      font-weight: 800;
+    }
+
+
+    .card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: var(--plum);
+      background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(184,137,63,0.12));
+      border: 1px solid rgba(184, 137, 63, 0.24);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+    }
+
+    .card-icon svg {
+      width: 21px;
+      height: 21px;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .empty.is-visible {
+      animation: cardFadeUp 380ms ease both;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.8;
+    }
+
+    .card a {
+      color: var(--plum);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(107, 77, 116, 0.28);
+      padding-bottom: 1px;
+      transition: border-color 0.2s ease;
+    }
+
+    .card a:hover { border-color: var(--plum); }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .tag {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--blue);
+      background: rgba(90, 111, 140, 0.1);
+      border: 1px solid rgba(90, 111, 140, 0.2);
+      border-radius: 999px;
+      padding: 5px 11px;
+      white-space: nowrap;
+      line-height: 1;
+      letter-spacing: 0.24px;
+    }
+
+    .tag.one { color: var(--green); background: rgba(91, 126, 114, 0.1); border-color: rgba(91, 126, 114, 0.22); }
+    .tag.group { color: var(--gold); background: rgba(184, 137, 63, 0.1); border-color: rgba(184, 137, 63, 0.24); }
+    .tag.private { color: var(--rose); background: rgba(176, 106, 114, 0.1); border-color: rgba(176, 106, 114, 0.22); }
+
+    .locked { opacity: 0.45; filter: saturate(0.45); }
+    .wide { grid-column: span 2; }
+
+    .num-form {
+      display: grid;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .date-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .date-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .date-field label {
+      color: var(--muted-soft);
+      font-size: 12px;
+      letter-spacing: 0.6px;
+      line-height: 1.4;
+    }
+
+    .num-button {
+      border: 1px solid rgba(107, 77, 116, 0.22);
+      border-radius: 14px;
+      background: linear-gradient(155deg, var(--plum), #4f3a59);
+      color: #fff;
+      min-height: 48px;
+      padding: 0 18px;
+      cursor: pointer;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      box-shadow: 0 10px 24px rgba(79, 58, 89, 0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .num-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(79, 58, 89, 0.28);
+    }
+
+    .numerology-result {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.66);
+      display: grid;
+      gap: 14px;
+      min-height: 130px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .result-mini {
+      border: 1px solid rgba(217, 202, 182, 0.86);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.74);
+      padding: 16px;
+      display: grid;
+      gap: 9px;
+      align-content: start;
+    }
+
+    .result-mini h4 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.5;
+      letter-spacing: 0.3px;
+    }
+
+    .result-mini p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.78;
+    }
+
+    .result-kicker {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .number-orb {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(155deg, var(--gold), #8c6428);
+      font-size: 24px;
+      font-weight: 850;
+      box-shadow: 0 12px 26px rgba(184, 137, 63, 0.24);
+    }
+
+    .empty {
+      border: 1px dashed var(--line-strong);
+      padding: 22px;
+      border-radius: var(--radius);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 920px) {
+      .shell { grid-template-columns: 1fr; }
+      aside { position: static; height: auto; }
+      main { padding: 28px 20px 40px; }
+      .topbar, .hero, .grid, .num-form, .date-grid, .result-grid { grid-template-columns: 1fr; }
+      .hero { padding: 32px 26px; }
+      .tableau { min-height: 240px; margin-top: 8px; }
+      .tarot-card { width: 124px; }
+      .wide { grid-column: span 1; }
+      .num-button { width: 100%; }
+    }
+  
+
+    /* Home mobile polish */
+    @media (max-width: 680px) {
+      .shell { grid-template-columns: 1fr; }
+      aside { padding: 16px 12px; }
+      .brand { gap: 10px; }
+      .brand h1 { font-size: 20px; }
+      .brand p { font-size: 12px; }
+      nav {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+      nav::-webkit-scrollbar { display: none; }
+      nav button {
+        flex: 0 0 auto;
+        width: auto;
+        padding: 9px 11px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      main { padding: 14px 10px 40px; gap: 14px; }
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 10px;
+        margin: -14px -10px 0;
+        border-radius: 0 0 18px 18px;
+      }
+      .search, .role { min-height: 40px; font-size: 13px; }
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 22px 14px 18px;
+        gap: 12px;
+      }
+      .eyebrow { font-size: 10px; letter-spacing: 0.16em; }
+      .hero h2 { font-size: clamp(27px, 8vw, 36px); line-height: 1.18; }
+      .hero-copy p { font-size: 14px; line-height: 1.78; }
+      .tableau { min-height: 184px; margin-top: 0; }
+      .tarot-card { width: 104px; height: 158px; padding: 11px; border-radius: 17px; }
+      .tarot-card b { font-size: 12px; }
+      .tarot-card i { width: 48px; height: 48px; }
+      .tarot-card span { font-size: 10px; line-height: 1.35; }
+      .card-a { left: 1%; top: 14px; }
+      .card-b { left: 33%; top: 36px; }
+      .card-c { right: 0; top: 10px; }
+      .section-head { grid-template-columns: 1fr; gap: 6px; }
+      .section-head h2 { font-size: 24px; }
+      .section-head p { font-size: 13px; line-height: 1.75; }
+      .grid.content-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .card {
+        min-height: auto;
+        padding: 12px;
+        border-radius: 17px;
+      }
+      .card.wide { grid-column: span 1; }
+      .card-icon { width: 34px; height: 34px; border-radius: 12px; }
+      .card h3 { font-size: 15px; line-height: 1.35; }
+      .card p { font-size: 13px; line-height: 1.65; }
+      .card p:not(:has(a)) {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .card a { min-height: 34px; padding: 8px 10px; font-size: 12px; }
+      .num-form, .date-grid, .result-grid { grid-template-columns: 1fr; }
+      .number-orb { width: 46px; height: 46px; font-size: 21px; }
+    }
+
+    @media (max-width: 420px) {
+      .grid.content-list { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand">
+        <div class="mark" aria-hidden="true"><span></span></div>
+        <div>
+          <h1>塔罗教学知识库</h1>
+          <p>独立于个人官网的教学、案例与学生资料入口。</p>
+        </div>
+      </div>
+      <nav aria-label="页面导航">
+        <button class="active" data-section="dashboard">总览</button>
+        <button data-section="brand">品牌展示</button>
+        <button data-section="student">学生入口</button>
+        <button data-section="knowledge">知识库</button>
+        <button data-section="cases">案例库</button>
+        <button data-section="numerology">娱乐灵数</button>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="topbar">
+        <input class="search" id="search" placeholder="全文搜索：输入关键词后按 Enter" />
+        <select class="role" id="role" aria-label="选择访问身份">
+          <option value="private">你自己</option>
+          <option value="one">一对一学生</option>
+          <option value="group">团课学生</option>
+          <option value="public">公开访客</option>
+        </select>
+      </div>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Bella Tarot Library</p>
+          <h2>塔罗教学资料库</h2>
+          <p>课程资料、案例复盘、进阶专题和个人笔记都从这里进入。</p>
+        </div>
+        <div class="tableau" aria-hidden="true">
+          <div class="tarot-card card-a"><b>牌义体系</b><i></i><span>核心理解 / 延展讲法</span></div>
+          <div class="tarot-card card-b"><b>案例复盘</b><i></i><span>问题背景 / 解读 / 反馈</span></div>
+          <div class="tarot-card card-c"><b>学生入口</b><i></i><span>一对一 / 团课 / 公开</span></div>
+        </div>
+      </section>
+
+      <section class="section active" id="dashboard">
+        <div class="grid content-list">
+          <article class="card searchable" data-access="public" data-keywords="品牌 官网 公开 介绍 公众号 抖音 小红书 IPHM 课程">
+            <div class="tags"><span class="tag">公开</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.3 5.8.5-4.4 3.8 1.3 5.7L12 15.2 7.1 18.3l1.3-5.7L4 8.8l5.8-.5z"/></svg></div>
+            <h3>品牌展示页</h3>
+            <p>个人定位、课程体系、公开平台、资质与学习反馈展示。<a href="./brand.html">打开品牌展示页</a></p>
+          </article>
+          <article class="card searchable" data-access="one" data-keywords="一对一 长期 学生 权限 复习">
+            <div class="tags"><span class="tag one">一对一</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0 4 4 0 0 0-8 0z"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></div>
+            <h3>一对一学生资料库</h3>
+            <p>长期复习入口，包含共享牌义、案例讲义、进阶专题和灵数补充。</p>
+          </article>
+          <article class="card searchable" data-access="group" data-keywords="团课 共享 复习 课程">
+            <div class="tags"><span class="tag group">团课</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V6.5A2.5 2.5 0 0 1 6.5 4H20v15H6.5A2.5 2.5 0 0 1 4 16.5"/><path d="M8 8h8M8 12h6"/></svg></div>
+            <h3>团课复习资料区</h3>
+            <p>共享牌义、选讲专题和阶段复习入口集中在这里，适合按课程进度查看。</p>
+          </article>
+          <article class="card searchable" data-access="private" data-keywords="私人 复盘 敏感 咨询">
+            <div class="tags"><span class="tag private">仅自己</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3"/><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M12 15v2"/></svg></div>
+            <h3>老师自用资料库</h3>
+            <p>用于整理备课笔记、草药研究、案例复盘和个人判断逻辑。</p>
+          </article>
+          <article class="card wide searchable" data-access="group" data-keywords="大阿尔卡纳 大阿尔卡那 大牌 权杖 圣杯 宝剑 星币 牌义 已导入 教学资料">
+            <div class="tags"><span class="tag group">已导入</span><span class="tag one">78 张完整牌库</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="16" rx="2"/><path d="M12 6v10M9 11h6"/></svg></div>
+            <h3>塔罗教学资料库</h3>
+            <p>已导入 22 张大牌，以及权杖、圣杯、宝剑、星币四组小牌，并按范围折叠分组。<a href="./tarot-library.html">打开资料库</a></p>
+          </article>
+          <article class="card wide searchable" data-access="one" data-keywords="进阶 专题 咨询 手册 卡巴拉 占星 寻物 长相 元素 疾病 客户">
+            <div class="tags"><span class="tag one">一对一</span><span class="tag private">老师自用</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M7 7l10 10"/></svg></div>
+            <h3>进阶专题资料库</h3>
+            <p>已从旧版 Word 乱稿整理出 22 个专题，适合作为老师备课、一对一补充和团课选讲。<a href="./advanced-topics.html">打开专题库</a></p>
+          </article>
+          <article class="card wide searchable" data-access="private" data-keywords="老师自用 草药 英文 文献 翻译 herbal herbs medicine 研究">
+            <div class="tags"><span class="tag private">仅自己</span><span class="tag">草药文献</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 20c7-1 10-5 11-14-7 1-11 4-12 11"/><path d="M6 18c3-4 6-6 10-8"/></svg></div>
+            <h3>老师自用区</h3>
+            <p>英文文献翻译、草药研究、私人备课和老师自用资料。<a href="./teacher-private.html">打开老师自用区</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="brand">
+        <div class="grid content-list">
+          <article class="card wide searchable" data-access="public" data-keywords="品牌 展示 课程 公众号 抖音 小红书 IPHM 反馈">
+            <div class="tags"><span class="tag">公开</span><span class="tag one">个人品牌</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.3 5.8.5-4.4 3.8 1.3 5.7L12 15.2 7.1 18.3l1.3-5.7L4 8.8l5.8-.5z"/></svg></div>
+            <h3>品牌展示页</h3>
+            <p>展示咨询与教学风格、课程价格、公开平台、IPHM 资质和学习反馈。<a href="./brand.html">打开品牌展示页</a></p>
+          </article>
+          <article class="card searchable" data-access="public" data-keywords="反馈 评价 真实 静态 网站">
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 9h8M8 13h5"/></svg></div>
+            <h3>学习反馈</h3>
+            <p>公开平台、脱敏截图和案例式反馈会集中整理在品牌展示页。</p>
+          </article>
+          <article class="card searchable" data-access="public" data-keywords="课程 价格 团课 一对一 证书">
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-3-6 3z"/><path d="M9 8h6M9 12h4"/></svg></div>
+            <h3>课程信息</h3>
+            <p>已整理录播三阶、团课打包、一对一系统课、证书和作业批改方式。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="student">
+        <div class="grid content-list">
+          <article class="card searchable" data-access="group" data-keywords="团课 共享 学生 权限 牌义 专题">
+            <div class="tags"><span class="tag group">团课共享</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 17c2-3 5-3 8 0 3-3 6-3 8 0"/><path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM16 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></div>
+            <h3>团课复习资料区</h3>
+            <p>放团课学生可看的复习资料；共享内容也会同步出现在一对一资料库。<a href="./group-students.html">打开团课复习资料区</a></p>
+          </article>
+          <article class="card searchable" data-access="one" data-keywords="一对一 长期 学生 权限 进阶 专题 牌义">
+            <div class="tags"><span class="tag one">一对一长期</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0 4 4 0 0 0-8 0z"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></div>
+            <h3>一对一学生资料库</h3>
+            <p>放一对一学生长期查看的资料；包含共享牌义、案例讲义和进阶补充专题。<a href="./one-on-one-students.html">打开一对一资料库</a></p>
+          </article>
+          <article class="card searchable" data-access="private" data-keywords="后台 私人 学生 管理">
+            <div class="tags"><span class="tag private">仅自己</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
+            <h3>学生资料管理</h3>
+            <p>用于沉淀学生阶段、作业情况、常见卡点和适合推送的资料，方便你自己备课和跟进。</p>
+          </article>
+          <article class="card searchable" data-access="private" data-keywords="老师自用 草药 英文文献 翻译 研究 禁忌 来源">
+            <div class="tags"><span class="tag private">仅自己</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 20c7-1 10-5 11-14-7 1-11 4-12 11"/><path d="M6 18c3-4 6-6 10-8"/></svg></div>
+            <h3>老师自用区</h3>
+            <p>草药英文文献翻译、工具笔记和个人研究集中在这里。<a href="./teacher-private.html">打开老师自用区</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="knowledge">
+        <div class="grid content-list">
+          <article class="card searchable" data-access="one" data-keywords="大阿尔卡纳 大阿尔卡纳 牌义 愚人 魔术师 女祭司">
+            <div class="tags"><span class="tag one">一对一</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/></svg></div>
+            <h3>大阿尔卡纳</h3>
+            <p>每张牌包含：暧昧、恋爱、复合、学业、工作、桃花财运、其他。<a href="./tarot-library.html">查看已导入资料</a></p>
+          </article>
+          <article class="card searchable" data-access="group" data-keywords="小阿尔卡那 权杖 圣杯 宝剑 星币 小牌">
+            <div class="tags"><span class="tag group">团课共享</span><span class="tag one">56 张小牌</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="9" height="14" rx="2"/><rect x="10" y="3" width="9" height="14" rx="2"/></svg></div>
+            <h3>小阿尔卡纳教学资料</h3>
+            <p>权杖、圣杯、宝剑、星币已全部导入，按花色、1-5、6-10、宫廷牌折叠分组。<a href="./minor-arcana.html">打开小阿尔卡纳</a></p>
+          </article>
+          <article class="card searchable" data-access="group" data-keywords="牌阵 三张牌 凯尔特十字">
+            <div class="tags"><span class="tag group">团课</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="9" rx="1"/><rect x="14" y="4" width="6" height="9" rx="1"/><rect x="9" y="13" width="6" height="8" rx="1"/></svg></div>
+            <h3>牌阵与提问</h3>
+            <p>整理适用场景、提问方式、禁忌问题、复盘方法和课堂练习。</p>
+          </article>
+          <article class="card searchable" data-access="private" data-keywords="临场发挥 讲法 补充 课堂">
+            <div class="tags"><span class="tag private">仅自己</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8h14M7 16h10"/><path d="M8 3h8"/></svg></div>
+            <h3>临场讲法仓库</h3>
+            <p>把你上课想到哪讲到哪的好内容收回来，之后变成可复用素材。</p>
+          </article>
+          <article class="card searchable" data-access="one" data-keywords="进阶专题 卡巴拉 占星 元素 寻物 客户 长相">
+            <div class="tags"><span class="tag one">一对一</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l8 7-8 11-8-11z"/><path d="M4 10h16"/></svg></div>
+            <h3>进阶专题</h3>
+            <p>卡巴拉、占星、四元素、寻物、长相判断和客户问询已单独成库。<a href="./advanced-topics.html">查看专题库</a></p>
+          </article>
+          <article class="card searchable" data-access="private" data-keywords="草药 英文 文献 翻译 herbal herbs 禁忌 来源">
+            <div class="tags"><span class="tag private">仅自己</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 20c7-1 11-6 11-15-7 1-12 6-11 15z"/><path d="M7 20c3-5 6-8 11-15"/></svg></div>
+            <h3>草药文献库</h3>
+            <p>英文资料按草药名、用途、禁忌、来源和备注整理。<a href="./teacher-private.html">打开草药库</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="cases">
+        <div class="section-head">
+          <h3>案例库</h3>
+          <p>这里收录可用于课堂讲解的案例材料。完整思路复盘仅面向一对一学生开放；公开区只保留轻量示例，避免暴露真实咨询细节。</p>
+        </div>
+        <div class="grid content-list">
+          <article class="card searchable" data-access="one" data-keywords="案例 下半年运势 第一组 思路复盘 画面观察 工作 学业 人际 感情 财运 健康">
+            <div class="tags"><span class="tag one">思路案例</span><span class="tag">下半年运势</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><path d="M17 17l3 3"/></svg></div>
+            <h3>下半年运势解读 · 思路复盘</h3>
+            <p>从牌面画面、故事线到现实建议，拆解工作 / 学业、人际 / 感情、财运和健康四组判断。<a href="./case-half-year-01.html">打开案例</a></p>
+          </article>
+          <article class="card searchable" data-access="one" data-keywords="案例 下半年运势 第二组 思路复盘 画面观察 工作 学业 人际 感情 财运 健康">
+            <div class="tags"><span class="tag one">思路案例</span><span class="tag">第二组</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><path d="M17 17l3 3"/></svg></div>
+            <h3>下半年运势解读 · 第二组</h3>
+            <p>继续拆解四组牌的画面观察、现实落点和读牌路径，适合和第一组对照练习。<a href="./case-half-year-02.html">打开案例</a></p>
+          </article>
+          <article class="card searchable" data-access="one" data-keywords="案例 下半年运势 第三组 元素能量 火 水 风 土 思路复盘">
+            <div class="tags"><span class="tag one">思路案例</span><span class="tag">第三组</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><path d="M17 17l3 3"/></svg></div>
+            <h3>下半年运势解读 · 第三组</h3>
+            <p>加入元素能量判断，练习从火、水、风、土的多与缺，补出更落地的建议。<a href="./case-half-year-03.html">打开案例</a></p>
+          </article>
+          <article class="card searchable" data-access="one" data-keywords="案例 下半年运势 第四组 关键牌 定调 元素能量 思路复盘">
+            <div class="tags"><span class="tag one">思路案例</span><span class="tag">第四组</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><path d="M17 17l3 3"/></svg></div>
+            <h3>下半年运势解读 · 第四组</h3>
+            <p>训练先用关键牌定调，再结合画面故事、元素逻辑和现实处境补完整判断。<a href="./case-half-year-04.html">打开案例</a></p>
+          </article>
+          <article class="card searchable" data-access="public" data-keywords="简单案例 公开 示例 读牌 练习">
+            <div class="tags"><span class="tag">简单开放</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6h14M5 12h10M5 18h7"/><path d="M18 14l2 2-4 4h-2v-2z"/></svg></div>
+            <h3>简单案例示例</h3>
+            <p>适合公开展示的轻量案例可以放在这里，只呈现问题、牌面和简短思路，不展示完整咨询细节。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="numerology">
+        <div class="section-head">
+          <h3>娱乐灵数</h3>
+          <p>输入出生年月日和想查看的年份，自动计算人生灵数、附加课题、年度运势课题。这个板块用于娱乐和自我观察，不作为固定结论。</p>
+        </div>
+        <div class="grid content-list">
+          <article class="card wide searchable" data-access="public" data-keywords="灵数 生日 生命灵数 年度运势 娱乐 数字 塔罗 大牌">
+            <div class="tags"><span class="tag">娱乐</span><span class="tag group">灵数计算</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></div>
+            <h3>灵数计算器</h3>
+            <p>生日所有数字相加，得到人生主课题；用 22 减去主课题，得到附加课题。年度运势则使用目标年份 + 生日月日计算。</p>
+            <div class="num-form">
+              <div class="date-grid">
+                <div class="date-field">
+                  <label for="birthYear">出生年份</label>
+                  <input class="birth-input" id="birthYear" type="number" min="1900" max="2099" placeholder="1997" />
+                </div>
+                <div class="date-field">
+                  <label for="birthMonth">出生月份</label>
+                  <input class="birth-input" id="birthMonth" type="number" min="1" max="12" placeholder="05" />
+                </div>
+                <div class="date-field">
+                  <label for="birthDay">出生日期</label>
+                  <input class="birth-input" id="birthDay" type="number" min="1" max="31" placeholder="16" />
+                </div>
+                <div class="date-field">
+                  <label for="targetYear">查看年份</label>
+                  <input class="birth-input" id="targetYear" type="number" min="1900" max="2099" placeholder="2026" />
+                </div>
+              </div>
+              <button class="num-button" id="calcNumerology" type="button">计算灵数</button>
+            </div>
+          </article>
+          <article class="card wide searchable" data-access="public" data-keywords="灵数 结果 解读 年度运势">
+            <div class="tags"><span class="tag">结果</span><span class="tag group">年度运势</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19h14"/><path d="M8 16V9M12 16V5M16 16v-3"/></svg></div>
+            <h3>计算结果</h3>
+            <div class="numerology-result" id="numerologyResult">
+              <p>输入生日和目标年份后点击计算，人生课题与年度课题会出现在这里。</p>
+            </div>
+          </article>
+          <article class="card searchable" data-access="one" data-keywords="灵数 PDF 一对一 补充资料">
+            <div class="tags"><span class="tag one">一对一补充</span></div>
+            <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
+            <h3>灵数 PDF</h3>
+            <p>完整讲义仍放在一对一资料中，适合结合学生个人情况继续讲。<a href="./assets/numerology.pdf">打开灵数资料</a></p>
+          </article>
+        </div>
+      </section>
+
+  <script>
+    const buttons = [...document.querySelectorAll("nav button")];
+    const sections = [...document.querySelectorAll(".section")];
+    const search = document.querySelector("#search");
+    const role = document.querySelector("#role");
+    const accessRank = { public: 0, group: 1, one: 2, private: 3 };
+    const majorArcanaMeanings = {
+      0: { card: "愚人", title: "新的可能", text: "新的开端、未知、自由与意外。适合打开体验，但需要避免太随性。" },
+      1: { card: "魔术师", title: "行动与显化", text: "新的项目、资源整合、表达与执行。重点是把想法落地。" },
+      2: { card: "女祭司", title: "直觉与内在", text: "更适合向内观察、学习、沉淀，也提醒你留意隐含信息。" },
+      3: { card: "女皇", title: "丰盛与创造", text: "创造力、关系滋养、资源丰盛。适合发展审美、表达和稳定产出。" },
+      4: { card: "皇帝", title: "秩序与基础", text: "规划、边界、责任与管理。需要一步一步建立稳定结构。" },
+      5: { card: "教皇", title: "学习与体系", text: "规则、课程、证书、传承与系统学习。适合跟随体系上升。" },
+      6: { card: "恋人", title: "关系与选择", text: "合作、情感、人际选择。重点是看清自己真正想靠近什么。" },
+      7: { card: "战车", title: "推进与胜负心", text: "行动力增强，适合冲刺。也要注意别只顾赢，忽略身心状态。" },
+      8: { card: "力量", title: "勇气与驯服", text: "内在力量、耐心和自我控制。适合处理压力、健康和新挑战。" },
+      9: { card: "隐士", title: "沉淀与学习", text: "适合独处、研究、复盘。其他领域进展慢，但学业与内在收获明显。" },
+      10: { card: "命运之轮", title: "变化与命运推力", text: "外部变化较多，不一定能完全掌控。适合顺势调整，而不是硬控。" },
+      11: { card: "正义", title: "现实平衡", text: "选择、契约、责任与公平。适合处理文件、规则和关系中的对等问题。" },
+      12: { card: "倒吊人", title: "暂停与换角度", text: "忙碌、等待、被环境牵制。需要换一个角度看问题，不急着翻盘。" },
+      13: { card: "死神", title: "结束与更新", text: "旧阶段结束，新阶段还在酝酿。适合断舍离，也要关注身体和工作风险。" },
+      14: { card: "节制", title: "内在平衡", text: "稳定、调和、慢慢恢复。重点不是大突破，而是找到适合自己的节奏。" },
+      15: { card: "恶魔", title: "欲望与绑定", text: "金钱、交易、诱惑与执念增强。需要看清代价，避免被表面机会带走。" },
+      16: { card: "高塔", title: "突变与重建", text: "旧结构被打破，可能有环境或工作变化。变化强烈，但也带来重建空间。" },
+      17: { card: "星星", title: "希望与幻想", text: "灵感、远方、愿望与情感想象。适合疗愈，但别只停在期待里。" },
+      18: { card: "月亮", title: "不确定与辨别", text: "信息混乱、情绪波动、隐瞒和误判增多。需要验证，不要只凭感觉下结论。" },
+      19: { card: "太阳", title: "显现与快乐", text: "公开、明朗、热情与生命力。适合曝光表达，但也要避免幼稚和过度乐观。" },
+      20: { card: "审判", title: "清算与转折", text: "过去的事情浮上台面，需要做出回应。适合复盘、告别和人生阶段转换。" },
+      21: { card: "世界", title: "完成与新篇章", text: "一个阶段完成或结束。适合收尾、毕业、分手或进入新的生活结构。" },
+      22: { card: "愚人", title: "自由与重启", text: "22 在这里作为完整循环后的重启能量。适合打开新路，也要避免失控。" }
+    };
+
+    const lifePathMeanings = {
+      1: { title: "开创者", text: "独立、自信、行动力强，适合开创自己的方向。课题是学会合作，别把所有事都扛成单人战斗。" },
+      2: { title: "感受者", text: "敏感、温和、直觉强，容易捕捉关系里的细微变化。课题是建立自信，不被他人的能量牵着走。" },
+      3: { title: "表达者", text: "创造力、表达力和艺术感更突出。课题是培养专注力，把灵感真的做成作品。" },
+      4: { title: "建造者", text: "踏实、稳定、有组织力，适合把目标一步步落地。课题是接纳变化，不要把安全感锁得太死。" },
+      5: { title: "自由者", text: "好奇、灵活、追求新鲜感，适合变化和探索。课题是平衡自由与责任，不要为了刺激消耗自己。" },
+      6: { title: "照顾者", text: "有爱心、责任感强，很容易照顾别人。课题是学会自我照顾，避免过度牺牲。" },
+      7: { title: "思考者", text: "内省、智慧、洞察力强，适合研究和精神探索。课题是少一点过度分析，多一点和现实连接。" },
+      8: { title: "掌舵者", text: "现实感、管理力和物质能量更强，适合经营与资源整合。课题是平衡物质和精神，不被成就绑架。" },
+      9: { title: "疗愈者", text: "共情力强，能在低谷中提炼力量，也适合创作和助人。课题是学会放下，不把所有人的痛苦都背在身上。" },
+      11: { title: "灵性觉醒者", text: "大师数字。直觉、灵性觉察和启发力更强。课题是信任直觉，同时让理想落地。" },
+      22: { title: "筑梦师", text: "大师数字。适合把愿景变成现实，有组织力和长期影响力。课题是承担责任，也照顾自己的内在需求。" },
+      33: { title: "精神导师", text: "大师数字。带有更强的疗愈、服务和启迪他人的能量。课题是不要过度奉献，要保留自己的生活。" }
+    };
+
+    function visibleForRole(access, currentRole) {
+      return accessRank[currentRole] >= accessRank[access];
+    }
+
+    function applyFilters() {
+      const query = search.value.trim().toLowerCase();
+      const currentRole = role.value;
+      const activeSection = document.querySelector(".section.active");
+      const cards = [...document.querySelectorAll(".searchable")];
+
+      cards.forEach((card) => {
+        const text = `${card.innerText} ${card.dataset.keywords || ""}`.toLowerCase();
+        const matchesQuery = !query || text.includes(query);
+        const allowed = visibleForRole(card.dataset.access || "public", currentRole);
+        card.style.display = matchesQuery ? "grid" : "none";
+        card.classList.toggle("locked", !allowed);
+      });
+
+      document.querySelectorAll(".section-empty").forEach((item) => item.remove());
+      if (!activeSection || !query) return;
+      const visibleCards = [...activeSection.querySelectorAll(".searchable")]
+        .filter((card) => card.style.display !== "none");
+      if (!visibleCards.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty section-empty is-visible";
+        empty.textContent = `没有找到“${search.value.trim()}”相关内容，可以换成牌名、主题或案例关键词试试。`;
+        activeSection.appendChild(empty);
+      }
+    }
+
+
+    function sumDigits(value) {
+      return String(value).replace(/\D/g, "").split("").reduce((sum, digit) => sum + Number(digit), 0);
+    }
+
+    function reduceLifeNumber(value) {
+      if ([11, 22, 33].includes(value)) return value;
+      while (value > 9) {
+        value = sumDigits(value);
+        if ([11, 22, 33].includes(value)) return value;
+      }
+      return value;
+    }
+
+    function reduceTarotNumber(value) {
+      while (value > 22) value = sumDigits(value);
+      return value === 0 ? 22 : value;
+    }
+
+    function lessonPair(number) {
+      const pair = 22 - number;
+      return pair <= 0 ? 22 : pair;
+    }
+
+    function fieldNumber(id) {
+      return Number(document.querySelector(id)?.value || 0);
+    }
+
+    function validDateParts(year, month, day) {
+      if (!year || !month || !day) return false;
+      const date = new Date(year, month - 1, day);
+      return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+    }
+
+    function miniCard(kicker, number, title, text, process) {
+      return `
+        <div class="result-mini">
+          <span class="result-kicker">${kicker}</span>
+          <div class="number-orb">${number}</div>
+          <h4>${number} · ${title}</h4>
+          <p>${text}</p>
+          <p class="small">${process}</p>
+        </div>
+      `;
+    }
+
+    function calculateNumerology() {
+      const result = document.querySelector("#numerologyResult");
+      if (!result) return;
+      const year = fieldNumber("#birthYear");
+      const month = fieldNumber("#birthMonth");
+      const day = fieldNumber("#birthDay");
+      const targetYear = fieldNumber("#targetYear") || new Date().getFullYear();
+
+      if (!validDateParts(year, month, day)) {
+        result.innerHTML = "<p>先输入完整、有效的出生年月日，再点击计算。</p>";
+        return;
+      }
+
+      const birthDigits = `${year}${String(month).padStart(2, "0")}${String(day).padStart(2, "0")}`;
+      const lifeTotal = sumDigits(birthDigits);
+      const lifeNumber = reduceLifeNumber(lifeTotal);
+      const lifeLesson = lessonPair(lifeNumber > 22 ? sumDigits(lifeNumber) : lifeNumber);
+      const lifeMeaning = lifePathMeanings[lifeNumber] || lifePathMeanings[reduceLifeNumber(lifeNumber)];
+      const lessonMeaning = majorArcanaMeanings[lifeLesson];
+
+      const yearDigits = `${targetYear}${String(month).padStart(2, "0")}${String(day).padStart(2, "0")}`;
+      const yearTotal = sumDigits(yearDigits);
+      const yearNumber = reduceTarotNumber(yearTotal);
+      const yearLesson = lessonPair(yearNumber);
+      const yearMeaning = majorArcanaMeanings[yearNumber];
+      const yearLessonMeaning = majorArcanaMeanings[yearLesson];
+
+      result.innerHTML = `
+        <div class="result-grid">
+          ${miniCard("Life Path", lifeNumber, lifeMeaning.title, lifeMeaning.text, `生日数字相加：${birthDigits.split("").join(" + ")} = ${lifeTotal}`)}
+          ${miniCard("Deep Lesson", lifeLesson, `${lessonMeaning.card} · ${lessonMeaning.title}`, lessonMeaning.text, `附加课题：22 - ${lifeNumber} = ${lifeLesson}`)}
+          ${miniCard("Personal Year", yearNumber, `${yearMeaning.card} · ${yearMeaning.title}`, yearMeaning.text, `${targetYear} 年 + 生日月日：${yearDigits.split("").join(" + ")} = ${yearTotal}`)}
+          ${miniCard("Year Lesson", yearLesson, `${yearLessonMeaning.card} · ${yearLessonMeaning.title}`, yearLessonMeaning.text, `年度附加课题：22 - ${yearNumber} = ${yearLesson}`)}
+        </div>
+        <p class="small">提示：年度灵数更适合和年度牌阵、现实处境一起看。这里先做娱乐和自我观察用，真正解读时仍要结合具体问题。</p>
+      `;
+    }
+
+    document.querySelector("#calcNumerology")?.addEventListener("click", calculateNumerology);
+    ["#birthYear", "#birthMonth", "#birthDay", "#targetYear"].forEach((selector) => {
+      document.querySelector(selector)?.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") calculateNumerology();
+      });
+    });
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        buttons.forEach((item) => item.classList.remove("active"));
+        sections.forEach((section) => section.classList.remove("active"));
+        button.classList.add("active");
+        const nextSection = document.querySelector(`#${button.dataset.section}`);
+        nextSection.classList.add("active");
+        nextSection.querySelectorAll(".card").forEach((card, index) => {
+          card.style.setProperty("--delay", `${index * 60}ms`);
+        });
+        document.querySelectorAll(".section.active .card").forEach((card, index) => {
+      card.style.setProperty("--delay", `${index * 60}ms`);
+    });
+    applyFilters();
+      });
+    });
+
+    search.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") return;
+      const query = search.value.trim();
+      if (!query) return;
+      window.location.href = `./search.html?query=${encodeURIComponent(query)}`;
+    });
+    role.addEventListener("change", applyFilters);
+    document.querySelectorAll(".section.active .card").forEach((card, index) => {
+      card.style.setProperty("--delay", `${index * 60}ms`);
+    });
+    applyFilters();
+  </script>
+</body>
+</html>

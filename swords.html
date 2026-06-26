@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>宝剑教学资料</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif; color: #272522; background: #fbf8f3; }
+    header { position: sticky; top: 0; z-index: 3; padding: 24px clamp(18px, 4vw, 52px); border-bottom: 1px solid #ded6ca; background: #fff; }
+    h1 { margin: 0 0 12px; font-size: clamp(26px, 4vw, 40px); letter-spacing: 0; }
+    .controls { display: grid; grid-template-columns: minmax(0, 1fr) 170px; gap: 12px; }
+    input, select { width: 100%; border: 1px solid #d8d0c6; border-radius: 8px; padding: 11px 12px; font: inherit; background: #fff; }
+    main { padding: 22px clamp(18px, 4vw, 52px) 52px; display: grid; gap: 14px; }
+    details { border: 1px solid #ded6ca; border-radius: 8px; background: #fff; overflow: clip; }
+    summary { cursor: pointer; padding: 15px 18px; font-weight: 700; font-size: 18px; background: #f4eee7; }
+    .deck > summary { font-size: 22px; background: #eee6dd; }
+    .suit > summary { background: #f7f2eb; }
+    .body { padding: 14px; display: grid; gap: 12px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; align-items: start; }
+    article { border: 1px solid #e6ded3; border-radius: 8px; background: #fff; padding: 14px; display: grid; gap: 8px; align-content: start; }
+    article details { border-color: #eee4d9; box-shadow: none; }
+    article summary { font-size: 15px; padding: 10px 12px; background: #fbf8f3; }
+    article .body { padding: 12px; }
+    h2 { margin: 0; font-size: 20px; letter-spacing: 0; }
+    h3 { margin: 10px 0 5px; font-size: 15px; color: #8c4d5a; }
+    p { margin: 0; color: #625c55; line-height: 1.65; }
+    ul { margin: 0; padding-left: 1.2em; display: grid; gap: 5px; }
+    li { line-height: 1.65; }
+    .meta { color: #6f675f; font-size: 12px; line-height: 1.4; }
+    .summary { border-left: 3px solid #b45a68; padding-left: 10px; max-height: 8.4em; overflow: auto; }
+    .empty { color: #716960; padding: 18px; border: 1px dashed #cbbfb2; border-radius: 8px; background: rgba(255,255,255,0.6); }
+    @media (max-width: 720px) { .controls { grid-template-columns: 1fr; } }
+  
+    .global-back-link {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 9px 13px;
+      border: 1px solid #e2d6c9;
+      border-radius: 999px;
+      background: rgba(255, 253, 249, 0.94);
+      color: #6f3f49;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 8px 22px rgba(61, 47, 35, 0.12);
+      backdrop-filter: blur(8px);
+    }
+    .global-back-link:hover { background: #fff; }
+  
+
+    /* Mobile readability polish */
+    @media (max-width: 680px) {
+      html { -webkit-text-size-adjust: 100%; }
+      body { font-size: 14px; line-height: 1.78; }
+      header { padding: 24px 14px 16px; }
+      main { padding: 16px 10px 52px; gap: 14px; }
+      h1 { font-size: clamp(26px, 8vw, 34px); line-height: 1.18; }
+      h2 { font-size: 20px; line-height: 1.3; }
+      h3 { font-size: 16px; line-height: 1.35; }
+      p, li { line-height: 1.75; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .search-panel { grid-template-columns: 1fr; gap: 10px; }
+      .card, article, .resource, .result, details, .topic-list li {
+        border-radius: 16px;
+        box-shadow: 0 10px 26px rgba(39, 34, 29, 0.045);
+      }
+      .card, article, .resource, .result, .topic-list li { padding: 12px; gap: 8px; }
+      summary { padding: 13px 14px; font-size: 16px; line-height: 1.35; }
+      .body { padding: 14px 12px 16px; gap: 12px; }
+      .resource-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .topic-list { grid-template-columns: 1fr; gap: 8px; }
+      .topic-list li { min-width: 0; }
+      .tag, .pill, .badge { font-size: 11px; line-height: 1.2; padding: 5px 7px; white-space: normal; }
+      .meta { font-size: 12px; }
+      .summary {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      article details:not([open]) + *,
+      .card p:not(:has(a)),
+      .resource p:not(:has(a)),
+      .result p {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      article details[open] .body {
+        max-height: 58vh;
+        overflow: auto;
+        overscroll-behavior: contain;
+      }
+      .global-back-link {
+        left: 10px;
+        bottom: 10px;
+        min-height: 34px;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .grid, .resource-list { grid-template-columns: 1fr; }
+      main { padding-left: 9px; padding-right: 9px; }
+    }
+
+  </style>
+</head>
+<body>
+  <a class="global-back-link" href="./minor-arcana.html">返回上级</a>
+
+  
+
+  
+
+  <header>
+    <h1>宝剑教学资料</h1>
+    <div class="controls">
+      <input id="search" placeholder="搜索牌名、主题、关键词，例如：权杖 / 复合 / 考试" />
+      <select id="section">
+        <option value="">全部主题</option>
+        <option>暧昧</option>
+        <option>恋爱</option>
+        <option>复合</option>
+        <option>学业</option>
+        <option>工作</option>
+        <option>桃花财运</option>
+        <option>其他</option>
+      </select>
+    </div>
+  </header>
+  <main id="list"></main>
+  <script>
+    const cards = [{"code": "S01", "number": "S01", "name": "宝剑一", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑1-5", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["更偏理性沟通，情感表达较少 不暧昧", "理性的态度", "没有太多沟通和交流", "冷暴力倾向", "不好推进", "虽然一号是一个开始，但是宝剑的开始更多是从思维和交流开始，而且剑是利器，要注意沟通"], "恋爱": ["剑锋象征言语的锋利，感情中可能因争吵、冷战或语言暴力而受伤害", "避免祸从口出", "说话直", "不顾情绪", "1. 伴侣可能更关注理性分析，而忽略了情感的连接。", "1. 沟通的失败，沟通直接，但容易伤人 感情中因误解或言语伤害而导致关系恶化。", "恋爱关系有往好的方向的可能性，但是目前还需要努力。"], "桃花财运": ["有桃花，但是这个桃花距离远，不是亲密接触联系的风格。所以比较难成", "财运一般，不过是一些创业投资类的反而可能会有突破，也是需要配合行动。开辟，开创的能量。"], "学业": ["积极的学习牌，代表着新的学术方向或学习机会", "理解力强", "思维清晰", "逻辑导向", "1. 会遇到一些挑战，特别是在理解深度上，可能需要花更多时间和精力去消化信息。强调理解与逻辑，而非死记", "有潜力在学业上取得好成绩，但也提醒你要注意自己的思维方式和学习方法，", "有计划但是需要执行和落地", "考试可以过，但是要1. 特别是在口试或与他人交流时，你需要更加小心，避免过于急躁导致的错误。"], "工作": ["新的工作机会，新的工作可能", "上面空出一个位置来给他，", "可以看到但是暂时摸不到的机会；机会出现，但需要果断抓", "言辞过于急躁可能带来不利后果，注意人际关系", "1. 工作中的沟通和逻辑思维非常重要，尤其是做决策时要更加小心。", "工作机会不算一帆风顺", "找工作可以找到但是不一定符合期待"], "其他": ["建议：注意逻辑问题；闭嘴；快速解决问题"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑一", "宝剑1-5"], "summary": "更偏理性沟通，情感表达较少 不暧昧；理性的态度；没有太多沟通和交流"}, {"code": "S02", "number": "S02", "name": "宝剑二", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑1-5", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["1. 封闭的状态，问卜者或伴侣可能将自己包裹起来，不愿意进行深入的交流或情感连接。", "防备心", "不好推进", "对方有感受，但不愿意表达或确认"], "恋爱": ["封闭的逃避沟通的状态", "如果有吵架的话是带有防备心态的，", "没有办法继续1. 感情关系进入停滞或冷漠阶段，双方都缺乏主动性。关系停在一个不处理问题的状态", "不想去看，不想聊，也不解决。说摆烂也不全是，更多是随便你怎么处理，我不参与也不提意见 倾向回避冲突，不参与决策", "问题在，但没人愿意碰"], "桃花财运": ["可能会有桃花但是客户不想要，或者不信任。", "财运不好，问能不能投资不行"], "学业": ["无法做出决定的状态，可能是面对多个选择但不知如何选择。可能正在纠结是否继续学业或选择其他方向", "1. 没有明显的进展，可能陷入了思考过度的困境。", "停滞", "1. 问考试能不能过的话，这个牌一般来说是不能的。虽然说有可能会根据其他牌有其他的可能性，但是“NO”的可能性非常大。", "1. 无法集中精力。你可能会有一些拖延症，学习进展缓慢。", "不愿意接受新的角度和学习方式"], "工作": ["短期内难有进展，除非做出选择", "1. 工作中的纠结与犹豫，没有明确的方向感。你可能有选择，但又封闭了自己，未能采取任何行动。", "问两个工作去哪个的话，大概率只有一个能进 需要在选项中做决定", "不敢做决定而错失机会的情况。", "1. 目前没有突破的可能，工作进展很慢或者完全没有进展。"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑二", "宝剑1-5"], "summary": "1. 封闭的状态，问卜者或伴侣可能将自己包裹起来，不愿意进行深入的交流或情感连接。；防备心；不好推进"}, {"code": "S03", "number": "S03", "name": "宝剑三", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑1-5", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["有感情创伤", "担心太多", "不敢推进 因为过去或当前的伤感，推进受阻"], "恋爱": ["担心多，", "收到伤害", "PTSD的后遗症。情绪创伤或阴影", "吵架之后的伤心"], "桃花财运": ["没有桃花，财运不佳，不敢尝试，投资理财慎重，这个项目或者类型对方可能不太熟悉"], "学业": ["不熟练的课题或者活动，没有经验", "担心比较多", "情绪影响学习", "挫败感", "压力", "考试不容易过，但是没有考过的情况下可能是忧虑太多。", "学业发展不是非常顺利，可能基础薄弱"], "工作": ["有重大的失误", "没经验，处理不好。", "打击", "情绪影响", "工作问题很多，可能遇到挫折或打击 工作中有让人难受的事情。"], "其他": ["建议：不要杞人忧天，不要担心，多想想好的事情，把过去忘了吧"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑三", "宝剑1-5"], "summary": "有感情创伤；担心太多；不敢推进 因为过去或当前的伤感，推进受阻"}, {"code": "S04", "number": "S04", "name": "宝剑四", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑1-5", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"核心提示": ["被动的，没有进展的", "没办法推进", "另一方不想恋爱 当前没有进入关系的状态或意愿较低", "聊的很少，聊天大概率很难进行下去，类似于对方不接话"], "恋爱": ["逃避", "休息的状态", "高度消耗的恋情 经历消耗后进入恢复阶段", "1. 需要时间和空间来恢复自己。", "另一方可能要求多或者情绪价值需求比较高，产生逃避倾向", "非常消极的态度"], "桃花财运": ["没有桃花，不是很需求。财运一般，没有什么大变动，投资之类的往赚钱的方向去的话不建议，赚不到，能回本就不错了。"], "学业": ["没有明显的进展，可能因为身体疲惫或者缺乏动力而难以集中精力学习。、", "1. 学习上的瓶颈期，进展缓慢，甚至可能感到对学业失去兴趣。 精力不足影响投入", "这也可能是你恢复精力的阶段，可能无法在短期内看到很大的成果，", "考试也是稳定发挥，看周围"], "工作": ["休息和恢复的时期，在事业方面，可能代表工作停滞或者没有进展。你可能正处于一个非常低谷的状态，", "1. 找不到工作，现有工作也没有发展前景，可能感到非常困顿和无力。", "没有事业心或者对现有工作缺乏激情 当前优先恢复而非推进", "工作压力大的话这个是需要休息的牌"], "其他": ["建议：休息，休假，一个人出去走走"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑四", "宝剑1-5"], "summary": "逃避；休息的状态；高度消耗的恋情 经历消耗后进入恢复阶段"}, {"code": "S05", "number": "S05", "name": "宝剑五", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑1-5", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["背叛或隐瞒的能量", "1. 例如劈腿、小三、嫖娼甚至更严重的问题。", "1. 明显的不平等，一方通过PUA、操纵或情绪勒索控制另一方。", "1. 暴力倾向，例如家暴或言语暴力，甚至涉及违法犯罪行为（如吸毒、非法交易等）。", "有目的性的追求和接触", "不对等", "有算计", "有试探", "杀猪盘，骗婚之类的"], "恋爱": ["吵架，吵的很难听 谁都不让", "三方关系而且故意隐瞒", "1. 感情中的冲突正在进一步激化，甚至引发严重的后果冲突升级，关系变得不舒服", "暴力倾向", "明显的不平等，", "不健康的关系", "吃绝户"], "桃花财运": ["有桃花但是不建议，不一定是好的。财运差，不要合作不要投资，容易骗钱是小，大概率有坑", "利益冲突", "合作风险", "信息不对等"], "学业": ["考试或学业研究过程中，遇到的不仅是外部压力，还可能存在作弊、抄袭或者不正当手段的风险。", "关系户顶替名额", "不公平对待 可能存在竞争压力或公平性问题的感受", "歧视", "竞争大"], "工作": ["竞争激烈", "办公室政治", "小人", "竞争", "萝卜坑的工作", "违法的工作；不正当竞争；用阴招；", "1. 这个工作可能涉及到违法，例如不合法的生意，甚至有可能遭遇公司破产、违法业务等问题。"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑五", "宝剑1-5"], "summary": "背叛或隐瞒的能量；1. 例如劈腿、小三、嫖娼甚至更严重的问题。；1. 明显的不平等，一方通过PUA、操纵或情绪勒索控制另一方。"}, {"code": "S06", "number": "S06", "name": "宝剑六", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑6-10", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["过渡状态", "某一方是主导 关系在往别的状态走", "两个人之间的沟通和交流很弱", "发展一般，有可以进一步的机会，但是看周围的牌决定"], "恋爱": ["非常鸡肋的感情模式 关系进入调整或疏离阶段", "距离感", "转变", "离开或修复", "交流很少，且有一方在领导感情走向 一方可能更主动推动改变", "失去激情和动力，但双方仍然维系着这种关系，更多是因为习惯或责任，而不是爱。", "这里两个人的目的地是一样的，所以关系里没有什么不可能调和的问题，最常见的情况是两个人缺少沟通，所以完全由其中一个人来决定方向。如果其他牌是一些愚人这一类的，可能另一方不参与感情中的决策和方向是因为本身没有足够投入。", "有正在离开的能量，物理或者心里上的", "发展能继续，但是没有太多波动。注意情绪化交流"], "桃花财运": ["目前这个阶段没有桃花。", "财运一般，只能说够用。投资这一类可以回本"], "学业": ["过渡期， 需要积累经验的时候", "有外出求学的能量", "所以考试类问留学这种的是能出去的，与环境变化相关", "涉及到换环境", "发展有不稳定的情况，相对来说是比较慢的速度，所以需要时间沉淀"], "工作": ["过渡期，不稳定", "职场上的变动、升职、转型等都存在一些不确定性", "升职加薪有可能，看周围", "1. 需要花时间去学习新技能，并且逐步积累经验，才有可能稳定。", "可能会遇到一些不太好相处的团队成员 环境变化带来的适应期", "领导带领整个节奏，自己没什么太多空间", "可能需要外出公干。"], "其他": ["出行建议：赶不上车", "建议：搭乘交通工具一定不要起晚，回顾过去有啥问题需要解决"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑六", "宝剑6-10"], "summary": "过渡状态；某一方是主导 关系在往别的状态走；两个人之间的沟通和交流很弱"}, {"code": "S07", "number": "S07", "name": "宝剑七", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑6-10", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["“欺骗牌", "耍小聪明", "可能有目的性，但是并非特别严重", "不是全部坦诚的状态", "关系可以发展，但是需要一些小手段 关系中可能存在策略或保留 这段关系不是完全透明的"], "恋爱": ["三方因素 可能涉及隐瞒或不公开的情况", "关系发展还可以，属于睁一只眼闭一只眼可以过的程度 关系中存在回避或选择性忽视的问题", "视奸", "问这件事情是不是真的，出这个大概率不是全部真实，说一半藏一半", "说话很好听，但是需要辨别信息、", "是个代表换个角度去思考的牌，问复合的时候也是。手段不是特别光彩但是不违法而且好用"], "桃花财运": ["有桃花，有两种可能，对方本身就是抱着目的来的。要么就是客户自己比较喜欢对方的身材脸。", "财运投机取巧类型的，所以还不错。买彩票啥的都可以小中，不多。但是如果问能不能投资或者投资能不能赚钱这个牌有风险，要么吃回扣，要么里面有陷阱"], "学业": ["存在一定的不诚实或欺骗。例如，可能会遇到考试作弊或作业抄袭的行为", "一般情况下学业中喜欢偷懒，走捷径。", "投机取巧的能量，所以对学习本身不是特别有主动性，临时抱佛脚", "考试可以过，险胜，或者临时抱佛脚运气不错但是本身基础还是不太好"], "工作": ["投机取巧、钻营的工作环境1.", "非常狡猾的同事或竞争者，需要保持警觉。", "但是客户如果是需要交流沟通的话还不错，比如说卖保险，说相声，销售。", "1. 工作方面有盗窃，挪用公款，偷税漏税，欺上瞒下的可能性。", "利益交换或合作背叛的局面。工作上的小人或不诚实的行为，", "发展也是偷懒，不是非常认真对待工作的状态。其实比较像是吃着碗里看着锅里"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑七", "宝剑6-10"], "summary": "“欺骗牌；耍小聪明；可能有目的性，但是并非特别严重"}, {"code": "S08", "number": "S08", "name": "宝剑八", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑6-10", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["1. 感到被束缚或限制，无法自由表达自己的想法或感受。", "对自己设限，害怕冒犯伴侣或者不愿意面对真实的状况。", "发展困难，但是更多是当事人自己的思维困住了，焦虑，不敢主动"], "恋爱": ["束缚或限制，", "不健康的感情关系，例如伴侣具有病娇倾向，或者问卜者感到自己被困在一段不正常的情感状态中。", "担心很多事情", "想走没办法走 感情中存在压抑或无力感，但未必是客观无法离开", "家暴，实质性存在很长一段时间", "焦虑", "感情中更多处在一个非常被动的位置，没有推动里，被自己思维控制住。", "为了孩子不离婚的家庭"], "桃花财运": ["这个牌没有桃花，就算是周围的牌看上去有，案主也不太敢发展，", "财运还行，可能有过度为经济情况焦虑，没有安全感的情况。但是钱是够的。投资理财这一块反而更多是太焦虑了，解牌的时候主要关注客户主动出击有没有机会。"], "学业": ["感到极度压抑，比如学习进展缓慢，或是无法找到合适的学习方法", "1. 难突破当前的困境，甚至可能有些厌学情绪。", "整体进展还可以，但是心理状态很差", "可能思维上的束缚来自于外部期待压力", "考试能过，过程不轻松。但是涉及到学校机构之类的不一定是第一志愿，不一定符合期待。"], "工作": ["了束缚与限制，暗示在工作中可能面临窒息感，没有太多自由，感觉被困住，无法自由发挥", "可能在做一份没有前景的工作，或者工作中没有进展 感觉没有发展空间", "1. 可能是朝九晚五的固定工作，或者是家务主妇类的角色，虽然表面上不忙碌，但实际是没有自由空间，甚至可能感觉自己的价值得不到承认。", "焦虑 不敢争取机会", "升职加薪没有", "但是工作整体发展还算可以"], "其他": ["，", "焦虑", "压力", "心理紧张", "建议：感情中赶紧跑。先暂时等一等，不要太焦虑", "信息茧房"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑八", "宝剑6-10"], "summary": "1. 感到被束缚或限制，无法自由表达自己的想法或感受。；对自己设限，害怕冒犯伴侣或者不愿意面对真实的状况。；发展困难，但是更多是当事人自己的思维困住了，焦虑，不敢主动"}, {"code": "S09", "number": "S09", "name": "宝剑九", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑6-10", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["极度痛苦的状态，", "多思多虑而感到非常痛苦", "没有进展过度揣摩而焦虑", "缺乏安全感", "谈不了恋爱 情绪消耗大于情感连接"], "恋爱": ["可以继续 但是没有爱情", "解决不了问题", "可能不是第一次这样吵架了", "忧虑，焦虑", "决定分手离婚的那段精神状态 处在是否要结束的痛苦阶段", "很难受折磨的状态", "感情没有进展"], "桃花财运": ["没有桃花，财运也不好，投资之类的不要碰，赔钱"], "学业": ["学业压力大", "学习上缺乏动力，或者由于过度的焦虑和不安影响了你的发挥。", "1. 有不必要的担忧和恐惧，这会阻碍你发挥真实水平。", "你在备考，宝剑九提醒你要警惕过度焦虑", "已经考完的过不了 容易因为紧张影响发挥", "学习上缺乏明确的进度"], "工作": ["极大的精神压力和负面情绪", "不安和恐惧，甚至会对工作产生强烈的焦虑感", "对工作安全感产生强烈焦虑", "找不到工作 求职过程容易焦虑受挫", "发展不顺利，需要处理的问题很棘手"], "其他": ["小孩，宠物，贵重物品丢失的能量", "建议：别多想，慢慢都会变好的", "占星：火星双子"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑九", "宝剑6-10"], "summary": "极度痛苦的状态，；多思多虑而感到非常痛苦；没有进展过度揣摩而焦虑"}, {"code": "S10", "number": "S10", "name": "宝剑十", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑6-10", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["彻底的终结", "没有未来和以后", "没有办法谈恋爱", "两个人把天聊死了"], "恋爱": ["1. 关系已经走到了尽头，无论如何努力都无法挽回。", "1. 结束可能伴随着极大的痛苦，例如分手、离婚或背叛带来的情感创伤。", "1. 问题可能已经积累到无法修复的地步，这段关系已然崩塌。", "1. 问卜者可能对这段关系完全失去了希望，选择放手，尽管过程极其痛苦。", "如果是长期折磨反复的关系，宝剑十是解脱，但是脱了一层皮"], "桃花财运": ["没桃花", "财运也没有"], "学业": ["极度的困境和痛苦的结束", "失败或延迟，可能是退学或者延毕的局面。你可能会面临学业上的重大困难， 可能面临阶段性失败或结束", "1. 心理压力过大或学业负担过重而导致进度停滞或彻底停滞。", "学习进度阻碍很大，有点心如死灰的感觉", "但是也能对应到感情中说的，一种解脱。比较少见，比如我讨厌数学，最后这一场考试以后我再也不用考数学了，那就是宝剑10"], "工作": ["全方位的结束，它象征着工作上的彻底失败或事业的停滞", "1. 面临极大的挑战，甚至是失业，可能会经历被裁员或工作中断的情形。", "1. 进展缓慢，而且极有可能在短期内没有改变的空间。工作上的压力非常沉重，可能有极大的不顺利。", "没有升职，找不到工作 工作可能面临终止或重大转折"], "其他": ["占星：太阳双子", "透支", "疲惫", "崩溃感", "建议：等，啥也别干", "宝剑宫廷"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑十", "宝剑6-10"], "summary": "彻底的终结；没有未来和以后；没有办法谈恋爱"}, {"code": "S11", "number": "S11", "name": "宝剑侍从", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑宫廷", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["不成熟的态度", "不太愿意负责，但是喜欢暧昧 对关系的责任感还不成熟 他更像在试探，而不是认真推进", "会说话，说比长好听", "关系不稳定，暂时不能在一起"], "恋爱": ["感情并不重要 对感情的重视程度不高或不稳定", "关系里缺乏责任感", "不稳定的发展", "可能有现实或责任难以平衡", "1. 玩乐和追求新鲜感。", "1. 双方可能缺乏深入的交流或承诺，更多是表面上的互动。", "百分百钓鱼；大概率脚踏两条船", "会撩骚但是不一定有实际出轨"], "桃花财运": ["有桃花，但是不一定是能进入到关系里的", "财运没什么钱，什么都想买但是自己钱又不多。投资绝对不行，自己能力不足"], "学业": ["不稳定和不专注", "，缺乏专注和追求新鲜感", "1. 学业上漫无目的，无法集中精力，可能会影响学习成绩和进展。", "容易分心，并且会对短期的兴趣产生更大的吸引力，而忽略了真正的学习任务。", "想赶紧结束但是又知道只能慢慢来", "考试不行"], "工作": ["不稳定的状态，表现为缺乏认真态度和对工作的不负责任", "迷茫期，没有明确的职业规划", "1. 追求短期的兴趣和刺激，而忽略了长远的发展。", "会缺乏成长机会，工资不高，而且没有升职加薪的可能", "1. 如果是问能不能找到工作的话，不太能找的到。 求职方向不清或准备不足", "眼高手低"], "其他": ["建议 ：追求兴趣，琢磨琢磨自己说了些啥，小心祸从口出"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑侍从", "宝剑宫廷"], "summary": "不成熟的态度；不太愿意负责，但是喜欢暧昧 对关系的责任感还不成熟 他更像在试探，而不是认真推进；会说话，说比长好听"}, {"code": "S12", "number": "S12", "name": "宝剑骑士", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑宫廷", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["进展可能比较快", "但是更多时候表示两个人交流有问题，容易抬杠", "进展不顺利", "没办法恋爱 “关系推进不稳定，容易因为冲突受阻 “发展快，但也容易翻车"], "恋爱": ["家暴", "吵架", "窒息的关系", "威胁，危险的伴侣", "负面情绪重", "1. 感情中的矛盾容易被激化，问卜者需要警惕情绪爆发带来的伤害。", "关系起伏大"], "桃花财运": ["没有", "财运差", "冲动消费", "决策快", "风险高"], "学业": ["毛手毛脚，发展不行 执行方式过于急躁影响结果”", "没有太多能力，会因为粗心搞砸", "急躁和冲动的表现，缺乏耐心", "急于求成", "考试过不了"], "工作": ["冲动和过度激进的态度", "急功近利，或者情绪化决策，导致工作中的不顺利", "人际关系差", "法律问题或仲裁", "这个牌是不顺的，会吵架甚至动手，工作能力不行。很容易搞砸事情。像是没什么脑子没太多文化的那种状态，比较刚愎自用。", "找不到工作，对每个工作环境都不是特别满意", "没有升职加薪"], "其他": ["建议：快点，做事之前动脑子"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑骑士", "宝剑宫廷"], "summary": "进展可能比较快；但是更多时候表示两个人交流有问题，容易抬杠；进展不顺利"}, {"code": "S13", "number": "S13", "name": "宝剑女王", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑宫廷", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["冷漠与独立的感情态度，她可能不需要或不依赖感情来定义自己 情感表达克制", "女性非常独立而且有自己的判断标准", "理性，事业心强", "感情里出现问题优先考虑怎么解决而不是对方的情绪", "优先考虑问题本身，而不是情绪", "关系女方可以推进，但是需要注意男生是不是国王牌，如果是国王的话容易卡住", "如果配合欺骗这种，宝剑女王可能代指男生身边有宝剑女王"], "恋爱": ["理性", "1. 感情关系可能更多基于利益，比如商业合作或家庭安排，而缺乏纯粹的情感连接。", "很自我，不太会考虑伴侣的感受。", "防御的状态，随时反击", "吵架的时候说话很难听", "关系当中也是女方主导"], "桃花财运": ["女方不需要恋爱，身边条件都不行。", "财运好，投资之类的如果是她比较熟悉的领域可以赚钱，但是她自己必须管事"], "学业": ["冷静和理性的思维", "学术领域可能偏向于理性思考和分析，适合深入研究", "缺乏创意和灵感的表现 更偏逻辑型而非感性型", "问考公考试这一类的，是可以上岸的，专业能力很强。", "整体发展很顺利"], "工作": ["1. 工作方面细心一些去解决问题是没问题的。", "2. 有一些职场斗争的能量", "3. 事业很好的，有钱。 有能力拿到资源或位置”", "高度的独立性和权力，同时也有冷漠的一面，可能在工作中不太关注他人的感受，优先目标，不优先情绪 强调自己的目标和权利", "会在工作中得到高位或领导角色", "找工作顺利", "升职加薪可以"], "其他": ["这事能不能成：能成，但是需要谨慎多确认几遍", "建议：冷漠的解决问题"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑女王", "宝剑宫廷"], "summary": "冷漠与独立的感情态度，她可能不需要或不依赖感情来定义自己 情感表达克制；女性非常独立而且有自己的判断标准；理性，事业心强"}, {"code": "S14", "number": "S14", "name": "宝剑国王", "deck": "小阿尔卡那", "suit": "宝剑", "group": "宝剑宫廷", "access": "一对一 / 团课", "source": "宝剑1-5.docx", "sections": {"暧昧": ["理性冷漠的形象 情感需求不优先", "不是特别需求恋爱关系", "没有到恋爱的地步", "会权衡利弊，个人价值，现实情况是优先考虑的", "事业心重", "推进比较难", "南方主导"], "恋爱": ["感情上注意性价比", "冷漠但强势的控制，关系更多基于逻辑与现实，而非情感共鸣。", "不能提供任何情绪价值", "不是非常舒服", "吵架喜欢阴阳怪气", "冷暴力", "能谈，但讲规则，不讲感觉。", "有凤凰男倾向"], "桃花财运": ["女生问桃花出这个的话肯定是有的，男生问的话可能也是要求高。", "财运佳， 投资好"], "学业": ["发展好", "理性和逻辑强", "考试能过", "专业能力强"], "工作": ["1. 具有较强的决策能力。", "独立、冷静，人际关系不一定好 更偏结果导向而非关系导向", "1. 但是问能不能升职或者工作发展怎么样的话，宝剑国王是很好的，", "1. 这张牌有官司和诉讼的能量，虽然不常见。在问一些涉及到法律问题的时候出这个要注意一些文件，文书合同之类的纸质的东西。", "工作蛮不错的，合作非常不讨喜。也听不进别人的建议，", "升职加薪可以"], "其他": ["宝剑国王和女王都是非常理性独立的人，都会对应到领导或者导师。虽然理性但是这种领导和导师不会为难人", "合作里都不太行是因为都适合当决策人。", "合作里如果对方是宝剑国王和女王的话要注意以下整个合作和投资的性价比，因为太过于理性了所以利益至上，有可能会损失到团队其他人的短期利益。 “优先整体效率或长期利益", "建议：冷漠的解决一切问题；要狠心"]}, "tags": ["小阿尔卡那", "宝剑", "宝剑国王", "宝剑宫廷"], "summary": "理性冷漠的形象 情感需求不优先；不是特别需求恋爱关系；没有到恋爱的地步"}];
+    const list = document.querySelector("#list");
+    const search = document.querySelector("#search");
+    const section = document.querySelector("#section");
+    const deckOrder = ["大阿尔卡那", "小阿尔卡那"];
+    const suitOrder = ["大牌", "权杖", "圣杯", "宝剑", "星币"];
+    const groupOrder = ["大牌0-5", "大牌6-10", "大牌11-15", "大牌16-21", "权杖1-5", "权杖6-10", "权杖宫廷", "圣杯1-5", "圣杯6-10", "圣杯宫廷", "宝剑1-5", "宝剑6-10", "宝剑宫廷", "星币1-5", "星币6-10", "星币宫廷"];
+
+    function sortByOrder(values, order) {
+      return [...values].sort((a, b) => order.indexOf(a) - order.indexOf(b));
+    }
+
+    function cardHtml(card, selectedSection) {
+      const names = selectedSection ? [selectedSection] : Object.keys(card.sections);
+      const content = names.map(name => `
+        <section>
+          <h3>${name}</h3>
+          <ul>${(card.sections[name] || ["待补充"]).map(item => `<li>${item}</li>`).join("")}</ul>
+        </section>
+      `).join("");
+      return `
+        <article>
+          <h2>${card.name}</h2>
+          <p class="meta">${card.suit} / ${card.group}</p>
+          <p class="summary">${card.summary || ""}</p>
+          <details ${selectedSection ? "open" : ""}>
+            <summary>${selectedSection ? selectedSection : "展开完整内容"}</summary>
+            <div class="body">${content}</div>
+          </details>
+        </article>
+      `;
+    }
+
+    function render() {
+      const q = search.value.trim().toLowerCase();
+      const selectedSection = section.value;
+      const filtered = cards.filter(card => {
+        const blob = JSON.stringify(card).toLowerCase();
+        return (!q || blob.includes(q)) && (!selectedSection || card.sections[selectedSection]);
+      });
+      list.innerHTML = "";
+      if (!filtered.length) {
+        list.innerHTML = '<div class="empty">没有搜到内容，可以换一个关键词试试。</div>';
+        return;
+      }
+      const decks = new Map();
+      filtered.forEach(card => {
+        if (!decks.has(card.deck)) decks.set(card.deck, new Map());
+        const suits = decks.get(card.deck);
+        if (!suits.has(card.suit)) suits.set(card.suit, new Map());
+        const groups = suits.get(card.suit);
+        if (!groups.has(card.group)) groups.set(card.group, []);
+        groups.get(card.group).push(card);
+      });
+      sortByOrder(decks.keys(), deckOrder).forEach(deck => {
+        const deckDetails = document.createElement("details");
+        deckDetails.className = "deck";
+        deckDetails.open = !!q || deck === "大阿尔卡那";
+        const suits = decks.get(deck);
+        const deckCount = [...suits.values()].reduce((sum, groups) => sum + [...groups.values()].reduce((x, cards) => x + cards.length, 0), 0);
+        deckDetails.innerHTML = `<summary>${deck} · ${deckCount} 张</summary>`;
+        const deckBody = document.createElement("div");
+        deckBody.className = "body";
+        sortByOrder(suits.keys(), suitOrder).forEach(suit => {
+          const suitDetails = document.createElement("details");
+          suitDetails.className = "suit";
+          suitDetails.open = !!q || deck === "大阿尔卡那";
+          const groups = suits.get(suit);
+          const suitCount = [...groups.values()].reduce((sum, cards) => sum + cards.length, 0);
+          suitDetails.innerHTML = `<summary>${suit} · ${suitCount} 张</summary>`;
+          const suitBody = document.createElement("div");
+          suitBody.className = "body";
+          sortByOrder(groups.keys(), groupOrder).forEach(group => {
+            const groupDetails = document.createElement("details");
+            groupDetails.open = !!q;
+            groupDetails.innerHTML = `<summary>${group} · ${groups.get(group).length} 张</summary>`;
+            const cardsWrap = document.createElement("div");
+            cardsWrap.className = "body cards";
+            cardsWrap.innerHTML = groups.get(group).map(card => cardHtml(card, selectedSection)).join("");
+            groupDetails.appendChild(cardsWrap);
+            suitBody.appendChild(groupDetails);
+          });
+          suitDetails.appendChild(suitBody);
+          deckBody.appendChild(suitDetails);
+        });
+        deckDetails.appendChild(deckBody);
+        list.appendChild(deckDetails);
+      });
+    }
+    search.addEventListener("input", render);
+    section.addEventListener("change", render);
+    const params = new URLSearchParams(location.search);
+    if (params.get("query")) search.value = params.get("query");
+    if (params.get("section")) section.value = params.get("section");
+    render();
+  </script>
+
+  <script src="./assets/access-gate.js" data-access="group"></script>
+</body>
+</html>
