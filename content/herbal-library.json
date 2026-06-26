@@ -1,0 +1,247 @@
+{
+  "updated": "2026-06-25",
+  "notes": "老师自用草药文献库。英文/繁中书籍内容以中文摘要、索引、来源和备课备注形式整理，不整本复制。",
+  "source_books": [
+    {
+      "title": "The Herbal Medicine-Maker's Handbook",
+      "author": "James Green",
+      "pages": 599,
+      "use_for": "草药制剂流程、工具、浸泡、煎煮、酊剂、糖浆、蜂蜜、外用敷布、保存和风险提示",
+      "priority": "优先提取制作方法和安全边界"
+    },
+    {
+      "title": "The Magic of Herbs",
+      "author": "David Conway",
+      "pages": 202,
+      "use_for": "草药传统象征、占星对应、花语、魔法草药资料表",
+      "priority": "优先提取草药象征和对应关系"
+    },
+    {
+      "title": "The Witch's Herbal Apothecary",
+      "author": "Marysia Miernowska",
+      "pages": 382,
+      "use_for": "四季草药、季节仪式、土地连接、药草灵性实践",
+      "priority": "优先提取季节主题和仪式结构"
+    },
+    {
+      "title": "The Green Witch's Grimoire",
+      "author": "Arin Murphy-Hiscock",
+      "pages": 228,
+      "use_for": "个人魔法书结构、自然魔法记录法、草药笔记模板",
+      "priority": "优先提取资料库/手账结构"
+    },
+    {
+      "title": "Year of the Witch",
+      "author": "Temperance Alden",
+      "pages": 186,
+      "use_for": "年度节气、季节能量、直觉式仪式和课程灵感",
+      "priority": "优先提取年度主题框架"
+    },
+    {
+      "title": "魔藥學",
+      "author": "Scott Cunningham",
+      "pages": 400,
+      "use_for": "中文/繁中草药魔法对应、方便和英文资料互相校对",
+      "priority": "优先作为中文术语参考"
+    }
+  ],
+  "imported_sections": [
+    {
+      "category": "安全边界",
+      "source": "The Herbal Medicine-Maker's Handbook",
+      "summary": "涉及营养、草药配方和制作说明的内容，只能作为学习和研究资料，不能替代医生、药师或合格健康从业者的判断。遇到疾病、怀孕、慢性病、服药、儿童、过敏体质或不明症状时，需要额外谨慎。",
+      "use_in_site": "放在老师自用区首页，作为所有草药资料的总前提。"
+    },
+    {
+      "category": "制作方法",
+      "source": "The Herbal Medicine-Maker's Handbook",
+      "summary": "这本书适合拆成制作方法库：采收、干燥、整理、储存、厨房工具、萃取流程、溶剂选择、浸泡、煎煮、蒸馏、花精、酊剂、油浸、软膏、糖浆、蜂蜜、醋剂、甘油剂、浴方、敷布等。",
+      "use_in_site": "做成制作方法卡片，方便备课时快速查流程。"
+    },
+    {
+      "category": "草药象征",
+      "source": "The Magic of Herbs / 魔藥學",
+      "summary": "这两本适合互相校对草药的传统象征、占星对应、花语、魔法用途和常见草药资料表。英文内容可先翻成中文摘要，再用繁中书校对术语。",
+      "use_in_site": "后续整理成草药条目：草药名、英文名、象征、用途、禁忌、来源。"
+    },
+    {
+      "category": "季节草药",
+      "source": "The Witch's Herbal Apothecary / Year of the Witch",
+      "summary": "这类书更适合做季节框架，不适合拆成单味草药药典。可整理为春季复苏、夏季行动、秋季收获、冬季沉淀等主题，用于课程灵感、仪式设计和个人备课。",
+      "use_in_site": "做成四季主题资料，不放进普通牌义或学生共享库。"
+    },
+    {
+      "category": "资料库方法",
+      "source": "The Green Witch's Grimoire",
+      "summary": "这本书适合提取记录结构：如何建立自己的魔法书、如何记录草药、月相、季节、仪式、个人实验和复盘。",
+      "use_in_site": "用来优化老师自用区和后续草药条目的记录模板。"
+    }
+  ],
+  "method_cards": [
+    {
+      "title": "浸泡 Infusion",
+      "source": "The Herbal Medicine-Maker's Handbook",
+      "summary": "偏向用热水萃取较柔软、芳香或易释放成分的植物材料，例如叶、花、较轻的地上部分。备课时可以理解成“像泡茶一样的温和萃取”。",
+      "risk_note": "不写剂量；涉及内服时必须回到来源、体质和禁忌。"
+    },
+    {
+      "title": "煎煮 Decoction",
+      "source": "The Herbal Medicine-Maker's Handbook",
+      "summary": "偏向处理较硬、较密实的植物材料，例如根、树皮、种子等，需要更长时间和更强的热萃取。",
+      "risk_note": "不适合把所有草药都煎煮；芳香类材料可能因长时间加热损失气味。"
+    },
+    {
+      "title": "酊剂 Tincture",
+      "source": "The Herbal Medicine-Maker's Handbook",
+      "summary": "用酒精等溶剂萃取植物成分，常见方法包括浸渍和渗滤。适合做成“制作方法专题”，但不适合直接给学生当配方使用。",
+      "risk_note": "酒精、药物相互作用、肝病、孕期、儿童等情况需要避开或谨慎。"
+    },
+    {
+      "title": "醋剂 Vinegar Infusion",
+      "source": "The Herbal Medicine-Maker's Handbook",
+      "summary": "用醋作为溶剂做草药浸出，适合整理到“厨房草药/民俗草药”方向。",
+      "risk_note": "胃酸、口腔/食道刺激、药物和疾病情况都要单独标注。"
+    },
+    {
+      "title": "甘油剂 Glycerite",
+      "source": "The Herbal Medicine-Maker's Handbook",
+      "summary": "用甘油作为溶剂，常被放在不使用酒精的替代路径里。适合做成“溶剂差异”备课卡。",
+      "risk_note": "依然不是自动安全；糖代谢、保存和污染风险需要注意。"
+    },
+    {
+      "title": "糖浆/蜂蜜/氧蜜 Syrups, Honeys, Oxymels",
+      "source": "The Herbal Medicine-Maker's Handbook",
+      "summary": "把草药与甜味、酸味载体结合，常用于风味、保存和日常使用场景。适合做成“草药厨房”专题。",
+      "risk_note": "糖分、蜂蜜禁忌、儿童年龄、过敏和保存条件必须标注。"
+    },
+    {
+      "title": "浴方 Baths",
+      "source": "The Herbal Medicine-Maker's Handbook",
+      "summary": "偏外用和身体感受方向，适合与放松、清洁、仪式感结合，作为老师自用灵感。",
+      "risk_note": "皮肤敏感、精油刺激、伤口、孕期和水温风险要单独提醒。"
+    },
+    {
+      "title": "敷布/热敷 Poultices and Fomentations",
+      "source": "The Herbal Medicine-Maker's Handbook",
+      "summary": "偏外用处理方式，可整理为“身体照护民俗/外用方法”专题。",
+      "risk_note": "不能替代医疗处理；开放性伤口、感染、烫伤和过敏风险需要避开。"
+    }
+  ],
+  "symbolic_frameworks": [
+    {
+      "title": "草药与占星",
+      "source": "The Magic of Herbs",
+      "summary": "可作为草药象征资料的一个维度：将植物与行星、元素、气质或传统象征联系起来。适合做神秘学备课，不应写成医学因果。"
+    },
+    {
+      "title": "形象对应 Doctrine of Signatures",
+      "source": "The Magic of Herbs",
+      "summary": "传统草药学里常见的象征逻辑：植物的颜色、形状、气味或生长方式被用于联想其象征意义。适合解释传统观念，不等于现代医学证据。"
+    },
+    {
+      "title": "花语与植物语言",
+      "source": "The Magic of Herbs",
+      "summary": "适合和塔罗、仪式、课程美学结合，整理成花草象征速查表。"
+    }
+  ],
+  "seasonal_frameworks": [
+    {
+      "season": "春季",
+      "theme": "复苏、唤醒、欲望、重新生长",
+      "source": "The Witch's Herbal Apothecary",
+      "site_use": "适合做新开始、身体感回归、课程开篇和春季仪式灵感。"
+    },
+    {
+      "season": "夏季",
+      "theme": "成熟、行动、外放、转化",
+      "source": "The Witch's Herbal Apothecary",
+      "site_use": "适合做行动力、热情、创造力和火元素相关课程灵感。"
+    },
+    {
+      "season": "秋季",
+      "theme": "收获、腐熟、智慧、魔法整合",
+      "source": "The Witch's Herbal Apothecary",
+      "site_use": "适合做复盘、结束、收获、祖先/土地主题。"
+    },
+    {
+      "season": "冬季",
+      "theme": "休眠、沉入、修复、内在聆听",
+      "source": "Year of the Witch",
+      "site_use": "适合做休整、阴影工作、年末复盘和个人仪式。"
+    }
+  ],
+  "recipe_frameworks": [
+    {
+      "title": "草药茶 / 浸泡饮 Infusion Tea",
+      "category": "草药厨房",
+      "summary": "把柔软的叶、花、芳香材料做成热水浸泡类饮品。适合记录风味、象征、季节和身体感受，但不写成治疗处方。",
+      "fields": ["草药组合", "风味", "象征主题", "适合季节", "禁忌", "来源", "个人备注"]
+    },
+    {
+      "title": "煎煮饮 Decoction",
+      "category": "草药厨房",
+      "summary": "用于较硬的根、树皮、种子等材料。适合做“慢火、沉淀、扎根、保护”类象征备课。",
+      "fields": ["材料类型", "煎煮逻辑", "象征主题", "风险", "来源", "个人备注"]
+    },
+    {
+      "title": "草药蜂蜜 / 糖浆",
+      "category": "草药厨房",
+      "summary": "把草药与甜味载体结合，适合整理成民俗草药、季节风味和仪式感食谱。",
+      "fields": ["草药", "载体", "风味", "象征主题", "保存", "禁忌", "来源"]
+    },
+    {
+      "title": "氧蜜 Oxymel",
+      "category": "草药厨房",
+      "summary": "以蜂蜜和醋作为核心载体的草药制作方向，适合放在“酸甜平衡、保护、清理、转换”主题里。",
+      "fields": ["草药", "蜂蜜/醋比例备注", "象征主题", "风味", "禁忌", "来源"]
+    },
+    {
+      "title": "草药醋 / 厨房浸泡",
+      "category": "草药厨房",
+      "summary": "偏厨房、民俗和日常使用的草药浸泡方向。适合做季节餐桌、净化、保护和土地连接主题。",
+      "fields": ["草药", "醋种", "用途边界", "象征主题", "刺激风险", "来源"]
+    },
+    {
+      "title": "浴方 / 足浴",
+      "category": "外用灵感",
+      "summary": "偏外用和仪式感，适合记录放松、清洁、睡前、保护、复苏等主题。",
+      "fields": ["草药", "水温", "象征主题", "皮肤风险", "禁忌", "来源"]
+    },
+    {
+      "title": "香囊 / 草药包",
+      "category": "魔法用途",
+      "summary": "不涉及内服，适合整理保护、睡眠、吸引、清理、学习等象征用途。",
+      "fields": ["草药组合", "用途", "元素/行星", "携带方式", "来源", "个人备注"]
+    }
+  ],
+  "attribute_schema": {
+    "title": "草药属性速查字段",
+    "fields": [
+      "中文名",
+      "英文名",
+      "拉丁名",
+      "元素",
+      "行星",
+      "性别/阴阳倾向",
+      "魔法用途",
+      "传统用途摘要",
+      "可用部位",
+      "常见形式",
+      "禁忌与风险",
+      "对应来源",
+      "你的备注"
+    ],
+    "note": "属性用于神秘学、课程和自用备课。涉及身体、剂量、疾病时，必须单独标注风险，不作为医疗建议。"
+  },
+  "attribute_examples": [
+    {
+      "name": "待导入草药",
+      "english": "Pending",
+      "element": "待校对",
+      "planet": "待校对",
+      "magical_uses": ["保护", "净化", "爱情", "睡眠", "繁荣", "疗愈象征"],
+      "source_note": "后续从 The Magic of Herbs、魔藥學 和其他来源逐条校对。"
+    }
+  ],
+  "entries": []
+}
