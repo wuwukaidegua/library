@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>下半年运势解读·思路复盘讲义</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "Microsoft YaHei", "PingFang SC", serif;
+      color: #302a25;
+      background: #fbf7f1;
+    }
+    header {
+      padding: 32px clamp(18px, 4vw, 58px) 24px;
+      background: #fffdf9;
+      border-bottom: 1px solid #eadfd2;
+    }
+    main { padding: 24px clamp(18px, 4vw, 58px) 64px; display: grid; gap: 22px; }
+    h1 { margin: 10px 0 12px; font-size: clamp(30px, 4vw, 46px); letter-spacing: 0; line-height: 1.2; }
+    h2 { margin: 0; font-size: 24px; letter-spacing: 0; }
+    h3 { margin: 10px 0 0; font-size: 18px; letter-spacing: 0; }
+    p { margin: 0; color: #625a51; line-height: 1.9; }
+    a { color: #8c4d5a; font-weight: 700; }
+    ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; color: #625a51; line-height: 1.82; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      max-width: max-content;
+      white-space: nowrap;
+      line-height: 1;
+      border-radius: 999px;
+      background: #b45a68;
+      color: #fff;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .panel, details {
+      background: #fffdf9;
+      border: 1px solid #e8dccd;
+      border-radius: 8px;
+      box-shadow: 0 8px 22px rgba(61, 47, 35, 0.045);
+      overflow: clip;
+    }
+    .panel { padding: 20px; display: grid; gap: 14px; align-content: start; }
+    .case-image {
+      width: 100%;
+      max-height: 680px;
+      object-fit: cover;
+      object-position: center 45%;
+      border-radius: 8px;
+      border: 1px solid #e8dccd;
+      background: #fff;
+    }
+    summary { cursor: pointer; padding: 17px 20px; font-size: 18px; font-weight: 800; background: #efe6dc; }
+    .body { padding: 18px 20px 22px; display: grid; gap: 16px; }
+    .quote { border-left: 3px solid #b45a68; padding-left: 13px; color: #4f463f; }
+    .table-wrap { width: 100%; overflow-x: auto; border: 1px solid #eadfd2; border-radius: 8px; background: #fff; }
+    table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    th, td { padding: 12px 13px; border-bottom: 1px solid #eee3d7; text-align: left; vertical-align: top; line-height: 1.75; }
+    th { background: #f3ece4; color: #3a322c; }
+    tr:last-child td { border-bottom: 0; }
+    .back { display: inline-block; margin-top: 14px; }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .case-image { max-height: none; }
+    }
+  
+    .global-back-link {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 9px 13px;
+      border: 1px solid #e2d6c9;
+      border-radius: 999px;
+      background: rgba(255, 253, 249, 0.94);
+      color: #6f3f49;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 8px 22px rgba(61, 47, 35, 0.12);
+      backdrop-filter: blur(8px);
+    }
+    .global-back-link:hover { background: #fff; }
+  
+
+    /* Mobile readability polish */
+    @media (max-width: 680px) {
+      html { -webkit-text-size-adjust: 100%; }
+      body { font-size: 14px; line-height: 1.78; }
+      header { padding: 24px 14px 16px; }
+      main { padding: 16px 10px 52px; gap: 14px; }
+      h1 { font-size: clamp(26px, 8vw, 34px); line-height: 1.18; }
+      h2 { font-size: 20px; line-height: 1.3; }
+      h3 { font-size: 16px; line-height: 1.35; }
+      p, li { line-height: 1.75; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .search-panel { grid-template-columns: 1fr; gap: 10px; }
+      .card, article, .resource, .result, details, .topic-list li {
+        border-radius: 16px;
+        box-shadow: 0 10px 26px rgba(39, 34, 29, 0.045);
+      }
+      .card, article, .resource, .result, .topic-list li { padding: 12px; gap: 8px; }
+      summary { padding: 13px 14px; font-size: 16px; line-height: 1.35; }
+      .body { padding: 14px 12px 16px; gap: 12px; }
+      .resource-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .topic-list { grid-template-columns: 1fr; gap: 8px; }
+      .topic-list li { min-width: 0; }
+      .tag, .pill, .badge { font-size: 11px; line-height: 1.2; padding: 5px 7px; white-space: normal; }
+      .meta { font-size: 12px; }
+      .summary {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      article details:not([open]) + *,
+      .card p:not(:has(a)),
+      .resource p:not(:has(a)),
+      .result p {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      article details[open] .body {
+        max-height: 58vh;
+        overflow: auto;
+        overscroll-behavior: contain;
+      }
+      .global-back-link {
+        left: 10px;
+        bottom: 10px;
+        min-height: 34px;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .grid, .resource-list { grid-template-columns: 1fr; }
+      main { padding-left: 9px; padding-right: 9px; }
+    }
+
+  </style>
+</head>
+<body>
+  <a class="global-back-link" href="./one-on-one-students.html">返回上级</a>
+
+  
+
+  
+
+  <header>
+    <span class="tag">一对一专属 · 案例思路复盘</span>
+    <h1>下半年运势解读·思路复盘讲义</h1>
+    <p>这页放的是老师从牌面观察到现实结论的完整思路，适合课后复盘和模仿练习。</p>
+    <a class="back" href="./one-on-one-students.html">返回一对一学生资料库</a>
+  </header>
+  <main>
+    <section class="hero">
+      <img class="case-image" src="./assets/case-h2-forecast.jpg" alt="下半年运势案例牌阵图" />
+      <div class="panel">
+        <h2>怎么读这份讲义</h2>
+        <p>主题：下半年各方面运势（工作/学业、人际/感情、财运、健康）</p><p>用途：课后复习。这份讲义不是课堂逐字稿，而是让你能看到我抽完牌之后，脑子里到底是怎么一步步从画面想到结论的。</p><p>怎么用它：建议你先盖住右边的「我的解读」，自己只看「画面我看到了什么」，试着串出一个故事，再对照我的思路。这样练，比背牌义有用得多。</p>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>读牌心法</h2>
+      <p class="quote">画面给方向和情绪，牌义给精度，现实场景给落地。</p>
+      <p>我跟很多人不一样，我是从画面去看的。但「从画面看」不是玄学，它其实是有固定路径的，我把它拆成三步给你：</p>
+<ul><li>第一步：先看画面，别急着想牌义。 我先抓的是构图、人物在做什么、视线朝哪、色调冷暖、手里拿着什么。这些是「事实」，先描述，不解读。</li><li>第二步：把几张牌串成一个故事。 我不会一张张孤立地解，而是把同一组的几张牌连成一条情绪线、一个发展过程。这才是「从画面读牌」的真相——我在用画面拼叙事。</li><li>第三步：再用牌义校准，落到现实场景。 最后才把抽象的画面，翻译成具体能做的事，比如「签合同要看清材料」「改简历」这种落地的话。</li></ul>
+<p>记住这句话：画面给方向和情绪，牌义给精度，现实场景给落地。三步缺一不可。</p>
+<h3>画面观察清单（每张牌都问自己这几个）</h3>
+    </section>
+    <details>
+      <summary>画面观察清单</summary>
+      <div class="body">
+        <p>每张牌先问自己这些问题，把“看到什么”说清楚，再进入解释。</p>
+        
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>看什么</th><th>具体在问</th><th>为什么重要</th></tr></thead>
+          <tbody><tr><td>人物动作/姿态</td><td>他在做什么？站着坐着躺着？</td><td>动作=能量状态</td></tr><tr><td>视线方向</td><td>看向哪里？背对着什么？</td><td>视线=注意力和回避</td></tr><tr><td>构图</td><td>谁在中心？有没有三角、对称？</td><td>中心=核心议题</td></tr><tr><td>色调氛围</td><td>冷暖明暗？什么天气？</td><td>色调=情绪基调</td></tr><tr><td>物件细节</td><td>手里拿什么？地上有什么？</td><td>细节=现实线索</td></tr><tr><td>第一感受</td><td>我看到时身体紧还是松？</td><td>直觉=别忽略的信号</td></tr></tbody>
+        </table>
+      </div>
+    
+      </div>
+    </details>
+    
+            <details>
+              <summary>工作 / 学业 · 宝剑十 · 正义 · 圣杯九 · 圣杯五</summary>
+              <div class="body">
+                <p>牌阵：宝剑十 · 正义 · 圣杯九 · 圣杯五</p>
+<h3>画面 → 我的解读（逐张对应）</h3>
+<h3>串成一个故事（这步最关键）</h3>
+<p>卡在中心、被针对（宝剑十）→ 所以你必须做一个取舍和平衡（正义）→ 但你现状其实挺舒服的，反而不想动（圣杯九）→ 心里又有点不甘和遗憾，怕错过（圣杯五）。这条线一连起来，结论就自己浮出来了。</p>
+<h3>给求测者的完整解读</h3>
+<p>这一组事业和学业方向，我觉得你们可能正在去取舍一个外部的平衡，比如说是继续学习还是现在就踏入职场，或者学习和工作中有需要去做出取舍的地方。因为我自己能感觉到你们对现在的整体状况还算是比较满意的，然后这个满意呢，可能就导致你有点不太想动，上进心稍微弱一些，但是你们又很清楚地知道现在这样的程度不行。</p>
+<p>有一些人工作/学习方向有现实生活需要去平衡，你们可能会比较焦虑，可能会丧失一些机会，但是这些机会并不是你们唯一的机会，所以不用太过沮丧。你们在工作或者学习当中是有想要突破的想法的，不过你们当下的思绪、环境和情绪可能卡住了，导致你们没有办法很好地突破，像是在解决一个卡点。</p>
+<p>下半年会在事业学习中付出很多精力。如果有需要签合同的、出国读书的，要注意以上材料、表格之类的东西，要看清楚。事业或者学业会有很大的痛点需要解决，对你来说是个挑战，甚至会有怀疑要不要继续努力死磕的想法。这里可以尝试适当换个方式或者角度，比如说一个人闷头挑战，换成听取别人的意见，相对来说会好很多。而且你们在事业学业中太过于焦虑了，反而没有看清楚真正的问题到底出在哪里，不要被听取来的信息或者周围已有的东西影响。</p>
+                
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>牌</th><th>画面我看到了什么</th><th>我从这里想到</th></tr></thead>
+          <tbody><tr><td>宝剑十</td><td>只有一把剑被架在正中心，周围其他的剑全都指着这个中心点。</td><td>你被「聚焦」「针对」了，卡在一个中心点上动不了，像是有个非解决不可的痛点压在这里。</td></tr><tr><td>正义</td><td>眼睛被蒙上，人物手里握着一把剑，背后是巨大的天平，剑和天平形成一个大三角。</td><td>必须做取舍、做判断。蒙眼=要你别被表象带跑，凭本质做平衡。这就是「学习还是工作」「死磕还是换路」的抉择。</td></tr><tr><td>圣杯九</td><td>近景是野外餐桌、饮料食物，人在草地上惬意享受，色调温和，远景是大海。</td><td>你对现状其实是满意的——而这份满意，恰恰让你「不太想动」，上进心被磨掉一点。</td></tr><tr><td>圣杯五</td><td>打开的破橱柜，已经碎掉的杯子，还有五个杯子摇摇欲坠地挂在上面。</td><td>有遗憾、有失去感，但「还没全碎」——还有五个杯子挂着。所以不用太沮丧，机会不是只有这一个。</td></tr></tbody>
+        </table>
+      </div>
+    
+              </div>
+            </details>
+            
+            <details>
+              <summary>人际 / 感情 · 权杖六 · 月亮 · 星币骑士 · 世界</summary>
+              <div class="body">
+                <p>牌阵：权杖六 · 月亮 · 星币骑士 · 世界</p>
+<h3>画面 → 我的解读（逐张对应）</h3>
+<h3>串成一个故事</h3>
+<p>对外看起来和谐又成功（权杖六）→ 但内部有没说出口、被裹住的情绪（月亮）→ 单身的话会遇到一个条件不错但暂时没结果的人（星币骑士）→ 有伴的话关系在迈入一个新阶段，只是适不适配还要观察（世界）。</p>
+<h3>给求测者的完整解读</h3>
+<p>这一组如果是单身的话，你们其实在人际和感情中过得还是很舒服的，你们比较喜欢稳定基础的感情，或者是你们目前的状态没有完全投入在感情当中。如果你们这组已经有伴侣了，我觉得你们的关系可能会进入到一个新的阶段，但是这个新阶段是不是完全适配你们，我不确定。不论是人际还是感情，要小心一些细节中的问题，或者是平时一些没有说出来的想法和感受，变成了某种阻碍。</p>
+<p>要多倾听对方的想法，感情中也不要太过于注重生活和工作而忽略对方的感受。单身的人可能会吸引到一个还算不错的、甚至在周围环境中比较出挑的异性，不过这段关系短期内没有结果。</p>
+<p>有一些涉及到换环境、搬家、出国的人，可能要到换了新环境之后，才会对自己的择偶观念有更清晰的认知和需求。有伴侣的人不要太在意对外的和谐成功，关系内部有问题、情绪处理不到位。但是如果感情基础比较长，或者你们现实条件是支持的，可以考虑规划关系中的下一步。</p>
+                
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>牌</th><th>画面我看到了什么</th><th>我从这里想到</th></tr></thead>
+          <tbody><tr><td>权杖六</td><td>一个人捧着奖杯、握拳，脖子上挂奖牌，周围是彩带，但画面里没有别人。</td><td>表面是成功、是被认可，但「没有别人」——这份和谐成功是对外的，关系内部其实是空的、孤立的。</td></tr><tr><td>月亮</td><td>一个被裹起来像木乃伊的人形，靠在窗边，环境破败肮脏，窗户关着，看不见表情。</td><td>有没说出口的东西被「裹」住了。窗户关着=情绪不流通；看不见表情=真实感受没表达出来。这就是关系里的隐性阻碍。</td></tr><tr><td>星币骑士</td><td>一个男性骑摩托车，背包上有星币，远景有房子，但人物动作是停止的。</td><td>有个还不错、条件稳定（有房子=有现实基础）的对象出现，但「动作停止」=短期内没有进展、没有结果。</td></tr><tr><td>世界</td><td>一个人站在楼梯最下方抬头往上看，天花垂满藤蔓，楼梯尽头没有明显建筑。</td><td>站在一个新阶段的「起点」往上看。是新阶段没错，但尽头没有明确建筑=这个新阶段是不是完全适配你，还不确定。</td></tr></tbody>
+        </table>
+      </div>
+    
+              </div>
+            </details>
+            
+            <details>
+              <summary>财运 · 圣杯国王 · 宝剑七 · 星币七 · 星币十</summary>
+              <div class="body">
+                <p>牌阵：圣杯国王 · 宝剑七 · 星币七 · 星币十</p>
+<h3>画面 → 我的解读（逐张对应）</h3>
+<h3>串成一个故事</h3>
+<p>资源充沛甚至溢出、人情往来多（圣杯国王）→ 用点巧劲和策略去争取机会（宝剑七）→ 财富在慢慢积累、存得住（星币七）→ 背后有家庭能量在托底（星币十）。整体是有收获的一组。</p>
+<h3>给求测者的完整解读</h3>
+<p>财运如果是学生的话，这一组还是有明显的家庭能量支撑的，收获会有，钱能存得住。如果是工作党，正在找工作的人可以尝试去修改你们的简历，变得更有适配性，适当美化一下自己的经验和履历，可能会有个不错的机会，涉及到大的平台或者公司，甚至是国企。做生意的话要稍微注意一下结尾款，不要总吃别人打出来的人情牌。</p>
+<p>可能有一些回款，或者一些意想不到的钱，比如刮刮乐中了一点小钱。谈项目的人可以试试用专业/公司背景作为背书。财运整体是有收获的。</p>
+                
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>牌</th><th>画面我看到了什么</th><th>我从这里想到</th></tr></thead>
+          <tbody><tr><td>圣杯国王（海贼王专题）</td><td>圣杯国王举着酒杯微笑，酒杯里的液体溢出来了，近景是这只杯子。</td><td>情绪/资源是「满到溢出」的状态，有给予、有人情往来。但溢出也提醒：别太被人情牌牵着走，结尾款、收尾要看好。</td></tr><tr><td>宝剑七</td><td>一个女性踩在飞行/悬浮的宝剑上前进，脸上带笑。</td><td>用策略、用「巧劲」前进，笑着=她知道自己在干嘛。对应到现实就是：适当美化履历、用技巧去争取，是可以的。</td></tr><tr><td>星币七（被关箱子的男人）</td><td>被关在箱子里的男人面带微笑，头发是灌木、灌木里长着星币，周围一群动物陪着他。</td><td>等待中的积累——星币在「长」，但还在箱子里没拿出来。有家庭/周围能量的陪伴支撑，钱在慢慢长，存得住。</td></tr><tr><td>星币十（蕾贝卡，生命之树布局）</td><td>生命之树布局，近景是蕾贝卡爸爸（木偶人）的背影。</td><td>明显的家庭能量、传承与庇护。背影=背后有人撑着你。这就是「家庭能量支撑、钱能存住」的来源。</td></tr></tbody>
+        </table>
+      </div>
+    
+              </div>
+            </details>
+            
+            <details>
+              <summary>健康 · 宝剑王后 · 圣杯四 · 权杖十 · 星币三</summary>
+              <div class="body">
+                <p>牌阵：宝剑王后 · 圣杯四 · 权杖十 · 星币三</p>
+<h3>画面 → 我的解读（逐张对应）</h3>
+<h3>串成一个故事</h3>
+<p>脑子绷得太紧、思虑重（宝剑王后）→ 倦怠到连该补充的水和营养都没接住（圣杯四）→ 因为扛太多、太忙（权杖十）→ 全副心思都扑在干活上（星币三）。结论很清楚：忙到忘了照顾自己。</p>
+<h3>给求测者的完整解读</h3>
+<p>这组健康方面要注意多喝水、多补充营养。感觉是因为工作比较忙，或者自己生活比较忙的原因，没有很好地照顾自己的身体，摄入的营养不够，喝水也不够。会比较累，有种睡不够、或者睡醒了还是很困的感觉。劳逸结合吧。</p>
+                
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>牌</th><th>画面我看到了什么（经典韦特）</th><th>我从这里想到</th></tr></thead>
+          <tbody><tr><td>宝剑王后</td><td>坐姿端正，一手举剑、一手伸出，神情清醒甚至有点严肃，天空清明。</td><td>头脑清醒、想得多，但偏「用脑过度」「理性绷着」。容易思虑重、放不下，睡不踏实。</td></tr><tr><td>圣杯四</td><td>一个人抱臂坐在树下，对眼前递来的杯子视而不见，神情倦怠。</td><td>倦怠、提不起劲，对身边能补充自己的东西（水、营养、休息）视而不见。该接的没接。</td></tr><tr><td>权杖十</td><td>一个人抱着十根沉重的权杖，弯着腰艰难前行，看不清前路。</td><td>太累了，扛太多。忙到压弯腰，身体被透支。</td></tr><tr><td>星币三</td><td>工匠在教堂里搭着架子干活，专注做工，旁边有人看着。</td><td>在持续「干活/付出」的状态，注意力都在事情上，没分给自己的身体。</td></tr></tbody>
+        </table>
+      </div>
+    
+              </div>
+            </details>
+            
+    <section class="panel">
+      <h2>给学生的练习作业</h2>
+      <p>挑上面任意一组牌，盖住「我的解读」那两栏，按下面的顺序自己走一遍：</p>
+<ul><li>只描述：把每张牌「我看到了什么」用大白话说出来，不许说牌义。</li><li>串故事：把这几张牌连成一句话的情绪线／发展过程。</li><li>落现实：如果这是对某个具体问题的回答，画面在告诉求测者做什么？</li><li>最后对照：再翻牌义和我的解读，看看差在哪里——差的地方，就是你下一步要补的。</li></ul>
+<p>一句话总结：你不是在背 78 张牌的意思，你是在练「看画面 → 串故事 → 落现实」这三步肌肉。练熟了，你也能像我一样，一眼从画面读出来。</p>
+    </section>
+  </main>
+
+  <script src="./assets/access-gate.js" data-access="one"></script>
+</body>
+</html>
